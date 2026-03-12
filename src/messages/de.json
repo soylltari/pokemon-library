@@ -1,1 +1,18 @@
-{}
+{
+  "auth": {
+    "login": {
+      "title": "Anmelden",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "rememberMe": "Angemeldet bleiben",
+      "login": "Einloggen"
+    },
+    "register": {
+      "title": "Registrieren",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "register": "Registrieren"
+    }
+  }
+}
