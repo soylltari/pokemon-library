@@ -1,14 +1,12 @@
 import React from "react";
-import { getTranslations } from "next-intl/server";
+import { AuthTabs } from "@/app/modules/auth/auth.module";
 
-export default async function LoginPage() {
-  const t = await getTranslations("auth.login");
+const LoginPage = async () => {
   return (
-    <div>
-      <h1>{t("title")}</h1>
-      <input type="email" placeholder={t("email")} />
-      <input type="password" placeholder={t("password")} />
-      <button>{t("login")}</button>
+    <div className="flex justify-center items-center h-screen">
+      <AuthTabs />
     </div>
   );
-}
+};
+
+export default LoginPage;
