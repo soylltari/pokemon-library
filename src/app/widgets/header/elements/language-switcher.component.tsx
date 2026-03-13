@@ -8,7 +8,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/app/shared/ui/dropdown-menu";
 import { routing } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";

@@ -1,33 +1,33 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface User {
+interface IUser {
   id: string;
   name: string;
   email: string;
   password: string;
 }
 
-interface AuthResult {
+interface IAuthResult {
   success: boolean;
   error?: { field: "email" | "password"; message: string };
 }
 
-interface AuthState {
-  users: User[];
-  user: User | null;
+interface IAuthState {
+  users: IUser[];
+  user: IUser | null;
   token: string | null;
   isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<AuthResult>;
+  login: (email: string, password: string) => Promise<IAuthResult>;
   register: (
     name: string,
     email: string,
     password: string,
-  ) => Promise<AuthResult>;
+  ) => Promise<IAuthResult>;
   logout: () => void;
 }
 
-export const useAuthStore = create<AuthState>()(
+export const useAuthStore = create<IAuthState>()(
   persist(
     (set, get) => ({
       users: [],
@@ -77,7 +77,7 @@ export const useAuthStore = create<AuthState>()(
           };
         }
 
-        const newUser: User = {
+        const newUser: IUser = {
           id: crypto.randomUUID(),
           name,
           email,

@@ -1,6 +1,6 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/shared/ui/tabs";
 
 import { LoginForm } from "./elements/login-form.component";
 import { RegisterForm } from "./elements/register-form.component";
