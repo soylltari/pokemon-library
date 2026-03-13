@@ -13,29 +13,34 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { AuthCardComponent } from "./auth-card.component";
 import { PasswordInputComponent } from "./password-input.component";
-
-const FormSchema = z.object({
-  email: z.email({ message: "Please enter a valid email address." }),
-  password: z.string().min(1, { message: "Password is required." }),
-});
-
-type FormValues = z.infer<typeof FormSchema>;
+import { useMemo } from "react";
 
 export const LoginForm = () => {
   const router = useRouter();
   const locale = useLocale();
   const login = useAuthStore((s) => s.login);
+  const t = useTranslations("auth.login");
 
+  const formSchema = useMemo(
+    () =>
+      z.object({
+        email: z.email({ message: t("errors.invalidEmail") }),
+        password: z.string().min(1, { message: t("errors.requiredPassword") }),
+      }),
+    [t],
+  );
+
+  type FormValues = z.infer<typeof formSchema>;
   const {
     handleSubmit,
     control,
     setError,
     formState: { isSubmitting },
   } = useForm<FormValues>({
-    resolver: zodResolver(FormSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: { email: "", password: "" },
   });
 
@@ -43,17 +48,16 @@ export const LoginForm = () => {
     const result = await login(data.email, data.password);
 
     if (!result.success && result.error) {
-      setError(result.error.field, { message: result.error.message });
+      setError(result.error.field, {
+        message: t(`errors.api.${result.error.message}`),
+      });
     } else {
       router.push(`/${locale}/items`);
     }
   };
 
   return (
-    <AuthCardComponent
-      title="Welcome back, Trainer!"
-      description="Please enter your details to sign in"
-    >
+    <AuthCardComponent title={t("title")} description={t("description")}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <FieldGroup>
           <Controller
@@ -61,12 +65,12 @@ export const LoginForm = () => {
             control={control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="email">Email address</FieldLabel>
+                <FieldLabel htmlFor="email">{t("emailLabel")}</FieldLabel>
                 <Input
                   {...field}
                   id="email"
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder={t("emailPlaceholder")}
                   aria-invalid={fieldState.invalid}
                 />
                 {fieldState.invalid && (
@@ -79,8 +83,8 @@ export const LoginForm = () => {
           <PasswordInputComponent
             control={control}
             name="password"
-            label="Password"
-            placeholder="Enter your password"
+            label={t("passwordLabel")}
+            placeholder={t("passwordPlaceholder")}
           />
         </FieldGroup>
 
@@ -90,7 +94,7 @@ export const LoginForm = () => {
           className="w-full mt-1"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Singing in..." : "Sign in"}
+          {isSubmitting ? t("submittingButton") : t("submitButton")}
         </Button>
       </form>
     </AuthCardComponent>

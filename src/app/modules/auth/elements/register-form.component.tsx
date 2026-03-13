@@ -13,30 +13,38 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { AuthCardComponent } from "./auth-card.component";
 import { PasswordInputComponent } from "./password-input.component";
-
-const FormSchema = z
-  .object({
-    name: z.string().min(1, { message: "Name is required." }),
-    email: z.email({ message: "Please enter a valid email address." }),
-    password: z.string().min(1, { message: "Password is required." }),
-    confirmPassword: z
-      .string()
-      .min(1, { message: "Confirm password is required." }),
-  })
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords do not match.",
-    path: ["confirmPassword"],
-  });
-
-type FormValues = z.infer<typeof FormSchema>;
+import { useMemo } from "react";
 
 export const RegisterForm = () => {
   const router = useRouter();
   const locale = useLocale();
   const register = useAuthStore((s) => s.register);
+  const t = useTranslations("auth.register");
+
+  const formSchema = useMemo(
+    () =>
+      z
+        .object({
+          name: z.string().min(1, { message: t("errors.requiredName") }),
+          email: z.email({ message: t("errors.invalidEmail") }),
+          password: z
+            .string()
+            .min(1, { message: t("errors.requiredPassword") }),
+          confirmPassword: z
+            .string()
+            .min(1, { message: t("errors.requiredConfirmPassword") }),
+        })
+        .refine((data) => data.password === data.confirmPassword, {
+          message: t("errors.passwordMismatch"),
+          path: ["confirmPassword"],
+        }),
+    [t],
+  );
+
+  type FormValues = z.infer<typeof formSchema>;
 
   const {
     handleSubmit,
@@ -44,7 +52,7 @@ export const RegisterForm = () => {
     setError,
     formState: { isSubmitting },
   } = useForm<FormValues>({
-    resolver: zodResolver(FormSchema),
+    resolver: zodResolver(formSchema),
     defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
   });
 
@@ -52,17 +60,16 @@ export const RegisterForm = () => {
     const result = await register(data.name, data.email, data.password);
 
     if (!result.success && result.error) {
-      setError(result.error.field, { message: result.error.message });
+      setError(result.error.field, {
+        message: t(`errors.api.${result.error.message}`),
+      });
     } else {
       router.push(`/${locale}/items`);
     }
   };
 
   return (
-    <AuthCardComponent
-      title="Welcome to Pokemon Library!"
-      description="Please enter your details to create an account"
-    >
+    <AuthCardComponent title={t("title")} description={t("description")}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
         <FieldGroup>
           <Controller
@@ -70,12 +77,12 @@ export const RegisterForm = () => {
             control={control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="name">Name</FieldLabel>
+                <FieldLabel htmlFor="name">{t("nameLabel")}</FieldLabel>
                 <Input
                   {...field}
                   id="name"
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder={t("namePlaceholder")}
                   aria-invalid={fieldState.invalid}
                 />
                 {fieldState.invalid && (
@@ -90,12 +97,12 @@ export const RegisterForm = () => {
             control={control}
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor="email">Email address</FieldLabel>
+                <FieldLabel htmlFor="email">{t("emailLabel")}</FieldLabel>
                 <Input
                   {...field}
                   id="email"
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder={t("emailPlaceholder")}
                   aria-invalid={fieldState.invalid}
                 />
                 {fieldState.invalid && (
@@ -108,14 +115,14 @@ export const RegisterForm = () => {
           <PasswordInputComponent
             control={control}
             name="password"
-            label="Password"
-            placeholder="Enter your password"
+            label={t("passwordLabel")}
+            placeholder={t("passwordPlaceholder")}
           />
           <PasswordInputComponent
             control={control}
             name="confirmPassword"
-            label="Confirm Password"
-            placeholder="Confirm your password"
+            label={t("confirmPasswordLabel")}
+            placeholder={t("confirmPasswordPlaceholder")}
           />
         </FieldGroup>
 
@@ -125,7 +132,7 @@ export const RegisterForm = () => {
           className="w-full mt-1"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Registering..." : "Register"}
+          {isSubmitting ? t("submittingButton") : t("submitButton")}
         </Button>
       </form>
     </AuthCardComponent>

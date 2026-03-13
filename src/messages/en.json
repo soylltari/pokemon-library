@@ -1,18 +1,46 @@
 {
   "auth": {
     "login": {
-      "title": "Login",
-      "email": "Email",
-      "password": "Password",
-      "rememberMe": "Remember me",
-      "login": "Login"
+      "title": "Welcome back, Trainer!",
+      "description": "Please enter your details to sign in",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "Enter your email address",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "submitButton": "Sign in",
+      "submittingButton": "Signing in...",
+      "errors": {
+        "invalidEmail": "Please enter a valid email address.",
+        "requiredPassword": "Password is required.",
+        "api": {
+          "accountNotFound": "No account found with this email.",
+          "incorrectPassword": "Incorrect password."
+        }
+      }
     },
     "register": {
-      "title": "Register",
-      "email": "Email",
-      "password": "Password",
-      "confirmPassword": "Confirm Password",
-      "register": "Register"
+      "title": "Welcome to Pokemon Library!",
+      "description": "Please enter your details to create an account",
+      "nameLabel": "Name",
+      "namePlaceholder": "Enter your name",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "Enter your email address",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "confirmPasswordLabel": "Confirm Password",
+      "confirmPasswordPlaceholder": "Confirm your password",
+      "submitButton": "Register",
+      "submittingButton": "Registering...",
+      "errors": {
+        "requiredName": "Name is required.",
+        "invalidEmail": "Please enter a valid email address.",
+        "requiredPassword": "Password is required.",
+        "requiredConfirmPassword": "Confirm password is required.",
+        "passwordMismatch": "Passwords do not match.",
+        "api": {
+          "accountExists": "An account with this email already exists."
+        }
+      }
     }
   }
 }

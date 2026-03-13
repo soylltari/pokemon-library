@@ -45,7 +45,7 @@ export const useAuthStore = create<AuthState>()(
             success: false,
             error: {
               field: "email",
-              message: "No account found with this email.",
+              message: "accountNotFound",
             },
           };
         }
@@ -53,7 +53,7 @@ export const useAuthStore = create<AuthState>()(
         if (existing.password !== password) {
           return {
             success: false,
-            error: { field: "password", message: "Incorrect password." },
+            error: { field: "password", message: "incorrectPassword" },
           };
         }
 
@@ -72,7 +72,7 @@ export const useAuthStore = create<AuthState>()(
             success: false,
             error: {
               field: "email",
-              message: "An account with this email already exists.",
+              message: "accountExists",
             },
           };
         }
