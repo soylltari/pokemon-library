@@ -42,5 +42,13 @@
         }
       }
     }
+  },
+  "library": {
+    "title": "Pokémon Bibliothek",
+    "loading": "Lade Pokémon...",
+    "listEnd": "Alle {pokemon} Pokémon geladen.",
+    "error": {
+      "fetchFailed": "Fehler beim Laden der Pokémon. Bitte versuchen Sie es erneut."
+    }
   }
 }
