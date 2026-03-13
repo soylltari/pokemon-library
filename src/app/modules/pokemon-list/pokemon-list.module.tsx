@@ -6,6 +6,7 @@ import { usePokemonListQuery } from "@/app/entities/api";
 import { useIntersection } from "@/app/shared/hooks";
 
 import { PokemonCard } from "./elements";
+import { useTranslations } from "next-intl";
 
 const getPokemonId = (url: string): number => {
   const parts = url.split("/").filter(Boolean);
@@ -13,6 +14,7 @@ const getPokemonId = (url: string): number => {
 };
 
 export const PokemonListModule = () => {
+  const t = useTranslations("library");
   const {
     data,
     fetchNextPage,
@@ -33,7 +35,7 @@ export const PokemonListModule = () => {
   if (isLoading) {
     return (
       <div className="flex justify-center py-20">
-        <p className="text-muted-foreground">Loading Pokemon...</p>
+        <p className="text-muted-foreground">{t("loading")}</p>
       </div>
     );
   }
@@ -41,9 +43,7 @@ export const PokemonListModule = () => {
   if (isError) {
     return (
       <div className="flex justify-center py-20">
-        <p className="text-destructive">
-          Failed to load Pokemon. Please try again.
-        </p>
+        <p className="text-destructive">{t("error.fetchFailed")}</p>
       </div>
     );
   }
@@ -61,11 +61,11 @@ export const PokemonListModule = () => {
 
       <div ref={sentinelRef} className="mt-8 flex justify-center py-6">
         {isFetchingNextPage && (
-          <p className="text-sm text-muted-foreground">Loading more...</p>
+          <p className="text-sm text-muted-foreground">{t("loading")}</p>
         )}
         {!hasNextPage && pokemon.length > 0 && (
           <p className="text-sm text-muted-foreground">
-            All {pokemon.length} Pokemon loaded
+            {t("listEnd", { pokemon: pokemon.length })}
           </p>
         )}
       </div>

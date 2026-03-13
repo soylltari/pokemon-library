@@ -9,10 +9,12 @@ import {
   POKEMON_QUERY_KEY,
 } from "@/app/entities/api/pokemon/pokemon.api";
 import { PokemonListModule } from "@/app/modules/pokemon-list";
+import { getTranslations } from "next-intl/server";
 
 export const revalidate = 3600;
 
 const PokemonItemsPage = async () => {
+  const t = await getTranslations("library");
   const queryClient = new QueryClient();
 
   await queryClient.prefetchInfiniteQuery({
@@ -23,7 +25,7 @@ const PokemonItemsPage = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <h1 className="text-5xl">Pokemon Library</h1>
+      <h1 className="text-5xl">{t("title")}</h1>
       <PokemonListModule />
     </HydrationBoundary>
   );
