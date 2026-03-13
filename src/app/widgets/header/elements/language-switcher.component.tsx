@@ -8,7 +8,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/app/shared/ui/dropdown-menu";
+} from "@/app/shared/ui";
 import { routing } from "@/i18n/routing";
 import { useLocale } from "next-intl";
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -18,7 +18,7 @@ const LOCALE_LABELS: Record<string, string> = {
   de: "Deutsch",
 };
 
-const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
+export const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
   const locale = useLocale();
   const pathname = usePathname();
   const router = useRouter();
@@ -49,5 +49,3 @@ const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
     </DropdownMenu>
   );
 };
-
-export default LanguageSwitcher;

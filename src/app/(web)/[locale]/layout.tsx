@@ -1,8 +1,8 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { QueryProvider } from "@/app/shared/ui/providers";
-import Header from "./index";
+import { QueryProvider } from "@/app/shared/ui";
+import { Header } from "@/app/widgets/header";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 export function generateStaticParams() {

@@ -4,14 +4,14 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { useAuthStore } from "@/app/shared/store/auth.store";
-import { Button } from "@/app/shared/ui/button";
-import { Input } from "@/app/shared/ui/input";
 import {
+  Button,
+  Input,
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@/app/shared/ui/field";
+} from "@/app/shared/ui";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { AuthCardComponent } from "./auth-card.component";

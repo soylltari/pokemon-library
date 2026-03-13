@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { Card, CardContent } from "@/app/shared/ui/card";
+import { Card, CardContent } from "@/app/shared/ui";
 import Image from "next/image";
 
 interface IPokemonCardProps {

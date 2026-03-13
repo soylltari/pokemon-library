@@ -4,9 +4,7 @@
 import { useState } from "react";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { Input } from "@/app/shared/ui/input";
-import { Button } from "@/app/shared/ui/button";
-import { Field, FieldError, FieldLabel } from "@/app/shared/ui/field";
+import { Input, Button, Field, FieldError, FieldLabel } from "@/app/shared/ui";
 
 interface IPasswordInputProps<T extends FieldValues> {
   control: Control<T>;

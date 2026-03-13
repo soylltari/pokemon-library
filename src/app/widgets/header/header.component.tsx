@@ -2,13 +2,13 @@
 import { LanguagesIcon, LogOutIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 
-import { Button } from "@/app/shared/ui/button";
-import LanguageSwitcher from "./elements/language-switcher.component";
+import { Button } from "@/app/shared/ui";
+import { LanguageSwitcher } from "./elements";
 import Image from "next/image";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useAuthStore } from "@/app/shared/store/auth.store";
 
-const Header = () => {
+export const Header = () => {
   const logout = useAuthStore((s) => s.logout);
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const router = useRouter();
@@ -52,5 +52,3 @@ const Header = () => {
     </header>
   );
 };
-
-export default Header;
