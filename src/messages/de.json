@@ -1,18 +1,46 @@
 {
   "auth": {
     "login": {
-      "title": "Anmelden",
-      "email": "E-Mail",
-      "password": "Passwort",
-      "rememberMe": "Angemeldet bleiben",
-      "login": "Einloggen"
+      "title": "Willkommen zurück, Trainer!",
+      "description": "Bitte geben Sie Ihre Daten ein, um sich anzumelden",
+      "emailLabel": "E-Mail-Adresse",
+      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
+      "submitButton": "Einloggen",
+      "submittingButton": "Anmeldung läuft...",
+      "errors": {
+        "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "requiredPassword": "Das Passwort ist erforderlich.",
+        "api": {
+          "accountNotFound": "Mit dieser E-Mail wurde kein Konto gefunden.",
+          "incorrectPassword": "Falsches Passwort."
+        }
+      }
     },
     "register": {
-      "title": "Registrieren",
-      "email": "E-Mail",
-      "password": "Passwort",
-      "confirmPassword": "Passwort bestätigen",
-      "register": "Registrieren"
+      "title": "Willkommen in der Pokemon Bibliothek!",
+      "description": "Bitte geben Sie Ihre Daten ein, um ein Konto zu erstellen",
+      "nameLabel": "Name",
+      "namePlaceholder": "Geben Sie Ihren Namen ein",
+      "emailLabel": "E-Mail-Adresse",
+      "emailPlaceholder": "Geben Sie Ihre E-Mail-Adresse ein",
+      "passwordLabel": "Passwort",
+      "passwordPlaceholder": "Geben Sie Ihr Passwort ein",
+      "confirmPasswordLabel": "Passwort bestätigen",
+      "confirmPasswordPlaceholder": "Bestätigen Sie Ihr Passwort",
+      "submitButton": "Registrieren",
+      "submittingButton": "Registrierung läuft...",
+      "errors": {
+        "requiredName": "Name ist erforderlich.",
+        "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+        "requiredPassword": "Das Passwort ist erforderlich.",
+        "requiredConfirmPassword": "Passwortbestätigung ist erforderlich.",
+        "passwordMismatch": "Die Passwörter stimmen nicht überein.",
+        "api": {
+          "accountExists": "Ein Konto mit dieser E-Mail-Adresse existiert bereits."
+        }
+      }
     }
   }
 }
