@@ -59,5 +59,14 @@
     "abilities": "Abilities",
     "hiddenLabel": " hidden",
     "back": "Back to the list"
+  },
+  "metadata": {
+    "appName": "Pokemon Library",
+    "description": "A simple app to browse and view details of Pokemon using the PokeAPI.",
+    "descriptionPrefix": "Details about",
+    "notFound": {
+      "title": "Pokemon not found",
+      "description": "The Pokemon you are looking for does not exist."
+    }
   }
 }
