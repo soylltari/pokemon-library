@@ -45,15 +45,15 @@ export const PokemonCard = ({ id, name }: IPokemonCardProps) => {
       const relativeY = mouseY - centerY;
 
       const cardTransform: ICardTransform = {
-        rotateX: -relativeY * 0.035,
-        rotateY: relativeX * 0.035,
-        scale: 1.025,
+        rotateX: -relativeY * 0.045,
+        rotateY: relativeX * 0.045,
+        scale: 1.03,
       };
 
       const imageTransform: ICardTransform = {
-        rotateX: -relativeY * 0.025,
-        rotateY: relativeX * 0.025,
-        scale: 1.05,
+        rotateX: -relativeY * 0.032,
+        rotateY: relativeX * 0.032,
+        scale: 1.2,
       };
 
       return { cardTransform, imageTransform };
@@ -117,17 +117,19 @@ export const PokemonCard = ({ id, name }: IPokemonCardProps) => {
     <Link href={`/items/${id}`}>
       <Card
         ref={cardRef}
-        className="relative overflow-hidden min-h-68 cursor-pointer"
+        className="relative overflow-hidden h-80 cursor-pointer rounded-2xl"
       >
         <Image
           ref={imageRef}
           src={spriteUrl}
           alt={name}
           fill
-          className="object-cover z-0 opacity-80"
+          className="object-contain z-10 p-4"
         />
-        <CardContent className="relative z-10 flex h-full p-4">
-          <p className="font-medium ">{capitalizedName}</p>
+        <CardContent className="relative z-0 flex items-start h-full p-4">
+          <p className="w-full text-center text-lg font-semibold tracking-wide drop-shadow-md bg-accent p-1 rounded-2xl">
+            {capitalizedName}
+          </p>
         </CardContent>
       </Card>
     </Link>
