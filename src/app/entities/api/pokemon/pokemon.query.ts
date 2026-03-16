@@ -24,4 +24,5 @@ export const usePokemonByIdQuery = (id: string | number) =>
   useQuery({
     queryKey: [...POKEMON_DETAIL_QUERY_KEY, id],
     queryFn: () => fetchPokemonById(id),
+    retry: false,
   });
