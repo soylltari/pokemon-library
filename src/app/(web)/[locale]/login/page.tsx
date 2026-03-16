@@ -3,7 +3,7 @@ import { AuthTabs } from "@/app/modules/auth/auth.module";
 
 const LoginPage = async () => {
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center min-h-[calc(100vh-67px)]">
       <AuthTabs />
     </div>
   );

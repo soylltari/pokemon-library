@@ -56,6 +56,14 @@
     "weight": "Gewicht",
     "baseExperience": "Basis-EXP",
     "baseStats": "Basis-Stats",
+    "stats": {
+      "hp": "HP",
+      "attack": "Angriff",
+      "defense": "Verteidigung",
+      "special-attack": "Spezial-Angriff",
+      "special-defense": "Spezial-Verteidigung",
+      "speed": "Geschwindigkeit"
+    },
     "abilities": "Fähigkeiten",
     "hiddenLabel": " versteckt",
     "back": "Zurück zur Liste"

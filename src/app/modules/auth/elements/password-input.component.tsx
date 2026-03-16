@@ -1,4 +1,3 @@
-// components/auth/password-field.tsx
 "use client";
 
 import { useState } from "react";
@@ -41,7 +40,7 @@ export const PasswordInputComponent = <T extends FieldValues>({
               size="icon"
               type="button"
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 hover:bg-transparent"
             >
               {showPassword ? (
                 <EyeOffIcon className="size-4" />

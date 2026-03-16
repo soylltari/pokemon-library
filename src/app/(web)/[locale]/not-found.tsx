@@ -10,7 +10,7 @@ const NotFound = () => {
         width={200}
         height={200}
       />
-      <h1 className="text-2xl font-bold">Not Found</h1>
+      <h1>Not Found</h1>
       <p className="text-gray-500">
         The page you are looking for does not exist.
       </p>

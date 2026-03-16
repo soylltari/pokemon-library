@@ -10,7 +10,7 @@ import { Header } from "@/app/widgets/header";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { Metadata } from "next";
 import "@/config/styles/globals.css";
-import { geistSans, geistMono } from "@/config/fonts/font";
+import { inter, montserrat } from "@/config/fonts";
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const t = await getTranslations("metadata");
@@ -40,16 +40,16 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <QueryProvider>
-        <html>
-          <body
-            suppressHydrationWarning
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
+        <html
+          lang={locale}
+          className={`${inter.variable} ${montserrat.variable}`}
+        >
+          <body suppressHydrationWarning className="antialiased">
             <Header />
             {children}
           </body>
         </html>
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </QueryProvider>
     </NextIntlClientProvider>
   );

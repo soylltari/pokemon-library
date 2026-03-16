@@ -34,7 +34,7 @@ export const PokemonListModule = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex justify-center my-20">
         <p className="text-muted-foreground">{t("loading")}</p>
       </div>
     );
@@ -42,7 +42,7 @@ export const PokemonListModule = () => {
 
   if (isError) {
     return (
-      <div className="flex justify-center py-20">
+      <div className="flex justify-center my-20">
         <p className="text-destructive">{t("error.fetchFailed")}</p>
       </div>
     );
@@ -51,8 +51,8 @@ export const PokemonListModule = () => {
   const pokemon = data?.pages.flatMap((page) => page.results) ?? [];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+    <div className="max-w-7xl mx-auto px-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {pokemon.map(({ name, url }) => {
           const id = getPokemonId(url);
           return <PokemonCard key={name} id={id} name={name} />;

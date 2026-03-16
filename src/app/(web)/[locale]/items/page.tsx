@@ -25,7 +25,7 @@ const PokemonItemsPage = async () => {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <h1 className="text-5xl">{t("title")}</h1>
+      <h1 className="text-center my-10">{t("title")}</h1>
       <PokemonListModule />
     </HydrationBoundary>
   );
