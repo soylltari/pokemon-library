@@ -1,9 +1,25 @@
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import {
+  getMessages,
+  getTranslations,
+  setRequestLocale,
+} from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { QueryProvider } from "@/app/shared/ui";
 import { Header } from "@/app/widgets/header";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import type { Metadata } from "next";
+import "@/config/styles/globals.css";
+import { geistSans, geistMono } from "@/config/fonts/font";
+
+export const generateMetadata = async (): Promise<Metadata> => {
+  const t = await getTranslations("metadata");
+
+  return {
+    title: t("appName"),
+    description: t("description"),
+  };
+};
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -24,8 +40,15 @@ export default async function LocaleLayout({
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <QueryProvider>
-        <Header />
-        {children}
+        <html>
+          <body
+            suppressHydrationWarning
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <Header />
+            {children}
+          </body>
+        </html>
         <ReactQueryDevtools />
       </QueryProvider>
     </NextIntlClientProvider>
