@@ -50,5 +50,14 @@
     "error": {
       "fetchFailed": "Fehler beim Laden der Pokémon. Bitte versuchen Sie es erneut."
     }
+  },
+  "detail": {
+    "height": "Größe",
+    "weight": "Gewicht",
+    "baseExperience": "Basis-EXP",
+    "baseStats": "Basis-Stats",
+    "abilities": "Fähigkeiten",
+    "hiddenLabel": " versteckt",
+    "back": "Zurück zur Liste"
   }
 }

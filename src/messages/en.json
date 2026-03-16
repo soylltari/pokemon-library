@@ -50,5 +50,14 @@
     "error": {
       "fetchFailed": "Failed to load Pokemon. Please try again."
     }
+  },
+  "detail": {
+    "height": "Height",
+    "weight": "Weight",
+    "baseExperience": "Base EXP",
+    "baseStats": "Base Stats",
+    "abilities": "Abilities",
+    "hiddenLabel": " hidden",
+    "back": "Back to the list"
   }
 }
