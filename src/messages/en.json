@@ -56,6 +56,14 @@
     "weight": "Weight",
     "baseExperience": "Base EXP",
     "baseStats": "Base Stats",
+    "stats": {
+      "hp": "HP",
+      "attack": "Attack",
+      "defense": "Defense",
+      "special-attack": "Sp. Atk",
+      "special-defense": "Sp. Def",
+      "speed": "Speed"
+    },
     "abilities": "Abilities",
     "hiddenLabel": " hidden",
     "back": "Back to the list"
