@@ -4,20 +4,38 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/shared/ui";
 
 import { LoginForm, RegisterForm } from "./elements";
 
+const tabs = [
+  {
+    value: "login",
+    label: "Sign In",
+  },
+  {
+    value: "register",
+    label: "Register",
+  },
+];
+
 export const AuthTabs = () => {
   return (
     <div className="w-full max-w-sm mx-auto">
       <Tabs defaultValue="login" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-4">
-          <TabsTrigger value="login">Sign In</TabsTrigger>
-          <TabsTrigger value="register">Register</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 bg-background gap-1 border p-1 mb-4">
+          {tabs.map((tab) => (
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className="data-[state=active]:bg-primary dark:data-[state=active]:bg-primary data-[state=active]:text-primary-foreground dark:data-[state=active]:text-primary-foreground dark:data-[state=active]:border-transparent p-0"
+            >
+              {tab.label}
+            </TabsTrigger>
+          ))}
         </TabsList>
 
-        <TabsContent value="login" className="mt-0">
+        <TabsContent value="login">
           <LoginForm />
         </TabsContent>
 
-        <TabsContent value="register" className="mt-0">
+        <TabsContent value="register">
           <RegisterForm />
         </TabsContent>
       </Tabs>
