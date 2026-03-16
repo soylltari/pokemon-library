@@ -49,7 +49,7 @@ export default async function LocaleLayout({
             {children}
           </body>
         </html>
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </QueryProvider>
     </NextIntlClientProvider>
   );

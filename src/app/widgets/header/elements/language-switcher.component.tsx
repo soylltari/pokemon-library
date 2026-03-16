@@ -34,6 +34,7 @@ export const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
         <DropdownMenuRadioGroup
           value={locale}
           onValueChange={handleChangeLocale}
+          className="space-y-1"
         >
           {routing.locales.map((loc) => (
             <DropdownMenuRadioItem
