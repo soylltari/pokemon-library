@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const NotFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)]">
       <Image
         src="/error-pokemon.png"
         alt="Not Found"
