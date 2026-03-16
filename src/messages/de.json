@@ -50,5 +50,23 @@
     "error": {
       "fetchFailed": "Fehler beim Laden der Pokémon. Bitte versuchen Sie es erneut."
     }
+  },
+  "detail": {
+    "height": "Größe",
+    "weight": "Gewicht",
+    "baseExperience": "Basis-EXP",
+    "baseStats": "Basis-Stats",
+    "abilities": "Fähigkeiten",
+    "hiddenLabel": " versteckt",
+    "back": "Zurück zur Liste"
+  },
+  "metadata": {
+    "appName": "Pokémon Bibliothek",
+    "description": "Eine einfache App zum Durchsuchen und Anzeigen von Pokémon-Details mithilfe der PokeAPI.",
+    "descriptionPrefix": "Details über",
+    "notFound": {
+      "title": "Pokémon nicht gefunden",
+      "description": "Das Pokémon, das Sie suchen, existiert nicht."
+    }
   }
 }
