@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PokemonDetail } from "@/app/modules/pokemon-detail";
 import { fetchPokemonById } from "@/app/entities/api";
 import { getTranslations } from "next-intl/server";
@@ -29,8 +30,15 @@ export const generateMetadata = async ({
   }
 };
 
-const PokemonDetailPage = () => {
-  return <PokemonDetail />;
+const PokemonDetailPage = async ({ params }: Props) => {
+  const { id } = await params;
+
+  try {
+    const pokemon = await fetchPokemonById(id);
+    return <PokemonDetail pokemon={pokemon} />;
+  } catch {
+    notFound();
+  }
 };
 
 export default PokemonDetailPage;
