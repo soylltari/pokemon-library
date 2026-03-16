@@ -1,7 +1,7 @@
-import React from "react";
+import { PokemonDetail } from "@/app/modules/pokemon-detail/pokemon-detail.module";
 
 const page = () => {
-  return <div>page</div>;
+  return <PokemonDetail />;
 };
 
 export default page;

@@ -1,7 +1,12 @@
 "use client";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { fetchPokemonList, POKEMON_QUERY_KEY } from "./pokemon.api";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import {
+  fetchPokemonById,
+  fetchPokemonList,
+  POKEMON_DETAIL_QUERY_KEY,
+  POKEMON_QUERY_KEY,
+} from "./pokemon.api";
 
 export const usePokemonListQuery = () =>
   useInfiniteQuery({
@@ -13,4 +18,10 @@ export const usePokemonListQuery = () =>
       return Number(url.searchParams.get("offset"));
     },
     initialPageParam: 0,
+  });
+
+export const usePokemonByIdQuery = (id: string | number) =>
+  useQuery({
+    queryKey: [...POKEMON_DETAIL_QUERY_KEY, id],
+    queryFn: () => fetchPokemonById(id),
   });

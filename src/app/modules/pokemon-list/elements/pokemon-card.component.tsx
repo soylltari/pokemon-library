@@ -2,6 +2,7 @@
 import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/app/shared/ui";
 import Image from "next/image";
+import { Link } from "@/i18n/navigation";
 
 interface IPokemonCardProps {
   id: number;
@@ -113,20 +114,22 @@ export const PokemonCard = ({ id, name }: IPokemonCardProps) => {
   }, []);
 
   return (
-    <Card
-      ref={cardRef}
-      className="relative overflow-hidden min-h-68 cursor-pointer"
-    >
-      <Image
-        ref={imageRef}
-        src={spriteUrl}
-        alt={name}
-        fill
-        className="object-cover z-0 opacity-80"
-      />
-      <CardContent className="relative z-10 flex h-full p-4">
-        <p className="font-medium ">{capitalizedName}</p>
-      </CardContent>
-    </Card>
+    <Link href={`/items/${id}`}>
+      <Card
+        ref={cardRef}
+        className="relative overflow-hidden min-h-68 cursor-pointer"
+      >
+        <Image
+          ref={imageRef}
+          src={spriteUrl}
+          alt={name}
+          fill
+          className="object-cover z-0 opacity-80"
+        />
+        <CardContent className="relative z-10 flex h-full p-4">
+          <p className="font-medium ">{capitalizedName}</p>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
