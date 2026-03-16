@@ -35,7 +35,11 @@ export const Header = () => {
         <div className="flex items-center gap-1.5">
           <LanguageSwitcher
             trigger={
-              <Button variant="ghost" size="icon">
+              <Button
+                variant="ghost"
+                size="icon"
+                aria-label="Language Switcher"
+              >
                 <LanguagesIcon />
               </Button>
             }
