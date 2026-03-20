@@ -11,7 +11,7 @@ import {
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@/app/shared/ui";
+} from "@/pkg/theme/ui";
 import { useRouter } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { AuthCardComponent } from "./auth-card.component";

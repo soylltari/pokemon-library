@@ -2,7 +2,7 @@
 import { LanguagesIcon, LogOutIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 
-import { Button } from "@/app/shared/ui";
+import { Button } from "@/pkg/theme/ui";
 import { LanguageSwitcher } from "./elements";
 import Image from "next/image";
 import { Link, useRouter } from "@/pkg/locale";

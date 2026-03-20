@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
-import { Card, CardContent } from "@/app/shared/ui";
+import { Card, CardContent } from "@/pkg/theme/ui";
 import Image from "next/image";
 import { Link } from "@/pkg/locale";
 

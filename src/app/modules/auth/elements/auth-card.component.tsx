@@ -5,7 +5,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/app/shared/ui";
+} from "@/pkg/theme/ui";
 
 interface IAuthCardProps {
   title: string;

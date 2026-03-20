@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Controller, Control, FieldValues, Path } from "react-hook-form";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { Input, Button, Field, FieldError, FieldLabel } from "@/app/shared/ui";
+import { Input, Button, Field, FieldError, FieldLabel } from "@/pkg/theme/ui";
 
 interface IPasswordInputProps<T extends FieldValues> {
   control: Control<T>;

@@ -6,11 +6,11 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/app/shared/ui/elements/card";
-import { Badge } from "@/app/shared/ui/elements/badge";
+} from "@/pkg/theme/ui/card";
+import { Badge } from "@/pkg/theme/ui/badge";
 import { StatBlock, TYPE_COLORS } from "./elements";
 import { Link } from "@/pkg/locale";
-import { Button } from "@/app/shared/ui/elements/button";
+import { Button } from "@/pkg/theme/ui/button";
 import { ArrowLeftIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { IPokemonDetails } from "@/app/entities/models/pokemon.model";

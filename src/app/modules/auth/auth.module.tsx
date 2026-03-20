@@ -1,6 +1,6 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/shared/ui";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/pkg/theme/ui";
 
 import { LoginForm, RegisterForm } from "./elements";
 

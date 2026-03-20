@@ -1,7 +1,7 @@
-import { CardContent } from "@/app/shared/ui/elements/card";
+import { CardContent } from "@/pkg/theme/ui/card";
 
 import { IPokemonStat } from "@/app/entities/models/pokemon.model";
-import { Card } from "@/app/shared/ui/elements/card";
+import { Card } from "@/pkg/theme/ui/card";
 import { useTranslations } from "next-intl";
 
 export const StatBlock = ({ stat }: { stat: IPokemonStat }) => {

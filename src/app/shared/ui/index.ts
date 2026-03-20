@@ -1,2 +1,2 @@
-export * from "./elements";
+export * from "../../../pkg/theme/ui";
 export * from "./providers";
