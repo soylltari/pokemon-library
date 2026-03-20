@@ -5,7 +5,7 @@ import {
   setRequestLocale,
 } from "next-intl/server";
 import { routing } from "@/pkg/locale";
-import { QueryProvider } from "@/app/shared/ui/providers";
+import { QueryProvider } from "@/pkg/rest-api";
 import { Header } from "@/app/widgets/header";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { Metadata } from "next";
