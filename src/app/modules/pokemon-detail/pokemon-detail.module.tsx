@@ -9,7 +9,7 @@ import {
 } from "@/app/shared/ui/elements/card";
 import { Badge } from "@/app/shared/ui/elements/badge";
 import { StatBlock, TYPE_COLORS } from "./elements";
-import { Link } from "@/i18n/navigation";
+import { Link } from "@/pkg/locale";
 import { Button } from "@/app/shared/ui/elements/button";
 import { ArrowLeftIcon } from "lucide-react";
 import { useTranslations } from "next-intl";

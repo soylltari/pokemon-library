@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { routing } from "@/i18n/routing";
+import { routing } from "@/pkg/locale";
 
 export default async function RootPage() {
   const cookieStore = await cookies();

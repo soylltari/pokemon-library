@@ -9,9 +9,9 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/app/shared/ui";
-import { routing } from "@/i18n/routing";
+import { routing } from "@/pkg/locale";
 import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { usePathname, useRouter } from "@/pkg/locale";
 
 const LOCALE_LABELS: Record<string, string> = {
   en: "English",

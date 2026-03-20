@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/app/shared/ui";
 import { LanguageSwitcher } from "./elements";
 import Image from "next/image";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link, useRouter } from "@/pkg/locale";
 import { useAuthStore } from "@/app/shared/store/auth.store";
 
 export const Header = () => {

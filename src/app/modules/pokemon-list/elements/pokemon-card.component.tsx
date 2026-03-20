@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/app/shared/ui";
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
+import { Link } from "@/pkg/locale";
 
 interface IPokemonCardProps {
   id: number;
