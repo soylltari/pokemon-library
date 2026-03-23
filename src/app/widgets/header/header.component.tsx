@@ -3,7 +3,7 @@ import { LanguagesIcon, LogOutIcon } from 'lucide-react'
 import Image from 'next/image'
 import { useSyncExternalStore } from 'react'
 
-import { useAuthStore } from '@/app/shared/store/auth.store'
+import { useAuthStore } from '@/app/shared/store'
 import { Link, useRouter } from '@/pkg/locale'
 import { Button } from '@/pkg/theme/ui'
 

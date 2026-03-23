@@ -7,7 +7,7 @@ import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useAuthStore } from '@/app/shared/store/auth.store'
+import { useAuthStore } from '@/app/shared/store'
 import { useRouter } from '@/pkg/locale'
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from '@/pkg/theme/ui'
 

@@ -17,6 +17,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
   return {
     title: t('appName'),
     description: t('description'),
+    icons: {
+      icon: '/icon.png',
+    },
   }
 }
 
