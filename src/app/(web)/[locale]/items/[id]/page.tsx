@@ -3,7 +3,6 @@ import { getTranslations } from 'next-intl/server'
 
 import { fetchPokemonById } from '@/app/entities/api'
 import { PokemonDetail } from '@/app/modules/pokemon-detail'
-import { notFound } from '@/pkg/locale'
 
 type Props = {
   params: Promise<{ id: string; locale: string }>
@@ -31,12 +30,8 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 const PokemonDetailPage = async ({ params }: Props) => {
   const { id } = await params
 
-  try {
-    const pokemon = await fetchPokemonById(id)
-    return <PokemonDetail pokemon={pokemon} />
-  } catch {
-    notFound()
-  }
+  const pokemon = await fetchPokemonById(id)
+  return <PokemonDetail pokemon={pokemon} />
 }
 
 export default PokemonDetailPage
