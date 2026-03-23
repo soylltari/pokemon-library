@@ -1,17 +1,40 @@
-import type { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
+import type { NextConfig } from 'next'
+import createNextIntlPlugin from 'next-intl/plugin'
 
+// i18n
+const withNextIntl = createNextIntlPlugin({
+  requestConfig: './src/pkg/locale/request.ts',
+  experimental: {
+    createMessagesDeclaration: ['./translations/en.json', './translations/de.json'],
+  },
+})
+
+// config
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  expireTime: 604800,
+
+  logging: {
+    fetches: {
+      fullUrl: process.env.NODE_ENV !== 'production',
+    },
+  },
+
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "raw.githubusercontent.com",
-        pathname: "/PokeAPI/sprites/**",
-      },
+      { protocol: 'https', hostname: '**' },
     ],
+    minimumCacheTTL: 86400,
+    deviceSizes: [640, 1080, 1920],
+    imageSizes: [16, 64, 128],
   },
-};
 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+  headers: async () => [
+    {
+      source: '/_next/image',
+      headers: [{ key: 'Cache-Control', value: 'public, max-age=86400, immutable' }],
+    },
+  ],
+}
+
+export default withNextIntl(nextConfig)

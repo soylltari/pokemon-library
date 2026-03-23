@@ -1,46 +1,42 @@
-"use client";
+'use client'
 
-import type { ReactNode } from "react";
+import { useLocale } from 'next-intl'
+import type { ReactNode } from 'react'
 
+import { routing } from '@/pkg/locale'
+import { usePathname, useRouter } from '@/pkg/locale'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from "@/app/shared/ui";
-import { routing } from "@/i18n/routing";
-import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+} from '@/pkg/theme/ui'
 
 const LOCALE_LABELS: Record<string, string> = {
-  en: "English",
-  de: "Deutsch",
-};
+  en: 'English',
+  de: 'Deutsch',
+}
 
 export const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
-  const locale = useLocale();
-  const pathname = usePathname();
-  const router = useRouter();
+  const locale = useLocale()
+  const pathname = usePathname()
+  const router = useRouter()
 
   const handleChangeLocale = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale });
-  };
+    router.replace(pathname, { locale: newLocale })
+  }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>
-      <DropdownMenuContent className="w-50" align="end">
-        <DropdownMenuRadioGroup
-          value={locale}
-          onValueChange={handleChangeLocale}
-          className="space-y-1"
-        >
+      <DropdownMenuContent className='w-50' align='end'>
+        <DropdownMenuRadioGroup value={locale} onValueChange={handleChangeLocale} className='space-y-1'>
           {routing.locales.map((loc) => (
             <DropdownMenuRadioItem
               key={loc}
               value={loc}
-              className="data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground pl-2 text-base [&>span]:hidden"
+              className='data-[state=checked]:bg-accent data-[state=checked]:text-accent-foreground pl-2 text-base [&>span]:hidden'
             >
               {LOCALE_LABELS[loc] ?? loc}
             </DropdownMenuRadioItem>
@@ -48,5 +44,5 @@ export const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}

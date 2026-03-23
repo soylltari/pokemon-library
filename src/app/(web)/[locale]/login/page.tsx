@@ -1,12 +1,13 @@
-import React from "react";
-import { AuthTabs } from "@/app/modules/auth/auth.module";
+import React from 'react'
+
+import { AuthTabs } from '@/app/modules/auth/auth.module'
 
 const LoginPage = async () => {
   return (
-    <div className="flex justify-center items-center min-h-[calc(100vh-67px)]">
+    <div className='flex min-h-[calc(100vh-67px)] items-center justify-center'>
       <AuthTabs />
     </div>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

@@ -1,2 +1,2 @@
-export * from "./pokemon.query";
-export * from "./pokemon.api";
+export * from './pokemon.api'
+export * from './pokemon.query'

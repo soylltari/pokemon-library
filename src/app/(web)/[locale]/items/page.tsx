@@ -1,33 +1,27 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+import { getTranslations } from 'next-intl/server'
 
-import {
-  fetchPokemonList,
-  POKEMON_QUERY_KEY,
-} from "@/app/entities/api/pokemon/pokemon.api";
-import { PokemonListModule } from "@/app/modules/pokemon-list";
-import { getTranslations } from "next-intl/server";
+import { dehydrate, HydrationBoundary, QueryClient } from '@tanstack/react-query'
 
-export const revalidate = 3600;
+import { fetchPokemonList, POKEMON_QUERY_KEY } from '@/app/entities/api/pokemon/pokemon.api'
+import { PokemonListModule } from '@/app/modules/pokemon-list'
+
+export const revalidate = 3600
 
 const PokemonItemsPage = async () => {
-  const t = await getTranslations("library");
-  const queryClient = new QueryClient();
+  const t = await getTranslations('library')
+  const queryClient = new QueryClient()
 
   await queryClient.prefetchInfiniteQuery({
     queryKey: POKEMON_QUERY_KEY,
     queryFn: ({ pageParam }) => fetchPokemonList(pageParam as number),
     initialPageParam: 0,
-  });
+  })
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <h1 className="text-center my-10">{t("title")}</h1>
+      <h1 className='my-10 text-center'>{t('title')}</h1>
       <PokemonListModule />
     </HydrationBoundary>
-  );
-};
-export default PokemonItemsPage;
+  )
+}
+export default PokemonItemsPage
