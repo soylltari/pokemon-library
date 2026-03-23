@@ -1,7 +1,7 @@
 'use client'
 import { LanguagesIcon, LogOutIcon } from 'lucide-react'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { useSyncExternalStore } from 'react'
 
 import { useAuthStore } from '@/app/shared/store/auth.store'
 import { Link, useRouter } from '@/pkg/locale'
@@ -14,11 +14,11 @@ export const Header = () => {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const router = useRouter()
 
-  const [isMounted, setIsMounted] = useState(false)
-
-  useEffect(() => {
-    setIsMounted(true)
-  }, [])
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
 
   const handleLogout = () => {
     logout()
