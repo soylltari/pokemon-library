@@ -2,12 +2,10 @@ import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-
 import { Header } from '@/app/widgets/header'
 import { inter, montserrat } from '@/config/fonts'
 import { routing } from '@/pkg/locale'
-import { QueryProvider } from '@/pkg/rest-api'
+import { RestApiProvider } from '@/pkg/rest-api'
 
 import '@/config/styles/globals.css'
 
@@ -41,15 +39,14 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <QueryProvider>
+      <RestApiProvider>
         <html lang={locale} className={`${inter.variable} ${montserrat.variable}`}>
           <body suppressHydrationWarning className='antialiased'>
             <Header />
             {children}
           </body>
         </html>
-        {/* <ReactQueryDevtools /> */}
-      </QueryProvider>
+      </RestApiProvider>
     </NextIntlClientProvider>
   )
 }
