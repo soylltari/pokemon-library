@@ -1,74 +1,63 @@
-"use client";
+'use client'
 
-import { useCallback } from "react";
+import { useTranslations } from 'next-intl'
+import { useCallback } from 'react'
 
-import { usePokemonListQuery } from "@/app/entities/api";
-import { useIntersection } from "@/app/shared/hooks";
+import { usePokemonListQuery } from '@/app/entities/api'
+import { useIntersection } from '@/app/shared/hooks'
 
-import { PokemonCard } from "./elements";
-import { useTranslations } from "next-intl";
+import { PokemonCard } from './elements'
 
 const getPokemonId = (url: string): number => {
-  const parts = url.split("/").filter(Boolean);
-  return Number(parts[parts.length - 1]);
-};
+  const parts = url.split('/').filter(Boolean)
+  return Number(parts[parts.length - 1])
+}
 
 export const PokemonListModule = () => {
-  const t = useTranslations("library");
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    isLoading,
-    isError,
-  } = usePokemonListQuery();
+  const t = useTranslations('library')
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = usePokemonListQuery()
 
   const handleIntersect = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
+      fetchNextPage()
     }
-  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
-  const sentinelRef = useIntersection(handleIntersect);
+  const sentinelRef = useIntersection(handleIntersect)
 
   if (isLoading) {
     return (
-      <div className="flex justify-center my-20">
-        <p className="text-muted-foreground">{t("loading")}</p>
+      <div className='my-20 flex justify-center'>
+        <p className='text-muted-foreground'>{t('loading')}</p>
       </div>
-    );
+    )
   }
 
   if (isError) {
     return (
-      <div className="flex justify-center my-20">
-        <p className="text-destructive">{t("error.fetchFailed")}</p>
+      <div className='my-20 flex justify-center'>
+        <p className='text-destructive'>{t('error.fetchFailed')}</p>
       </div>
-    );
+    )
   }
 
-  const pokemon = data?.pages.flatMap((page) => page.results) ?? [];
+  const pokemon = data?.pages.flatMap((page) => page.results) ?? []
 
   return (
-    <div className="max-w-7xl mx-auto px-4">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <div className='mx-auto max-w-7xl px-4'>
+      <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {pokemon.map(({ name, url }) => {
-          const id = getPokemonId(url);
-          return <PokemonCard key={name} id={id} name={name} />;
+          const id = getPokemonId(url)
+          return <PokemonCard key={name} id={id} name={name} />
         })}
       </div>
 
-      <div ref={sentinelRef} className="mt-8 flex justify-center py-6">
-        {isFetchingNextPage && (
-          <p className="text-sm text-muted-foreground">{t("loading")}</p>
-        )}
+      <div ref={sentinelRef} className='mt-8 flex justify-center py-6'>
+        {isFetchingNextPage && <p className='text-muted-foreground text-sm'>{t('loading')}</p>}
         {!hasNextPage && pokemon.length > 0 && (
-          <p className="text-sm text-muted-foreground">
-            {t("listEnd", { pokemon: pokemon.length })}
-          </p>
+          <p className='text-muted-foreground text-sm'>{t('listEnd', { pokemon: pokemon.length })}</p>
         )}
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,1 +1,1 @@
-export * from "./pokemon-detail.module";
+export * from './pokemon-detail.module'

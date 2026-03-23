@@ -1,15 +1,16 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { Controller, Control, FieldValues, Path } from "react-hook-form";
-import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { Input, Button, Field, FieldError, FieldLabel } from "@/pkg/theme/ui";
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
+import { useState } from 'react'
+import { Control, Controller, FieldValues, Path } from 'react-hook-form'
+
+import { Button, Field, FieldError, FieldLabel, Input } from '@/pkg/theme/ui'
 
 interface IPasswordInputProps<T extends FieldValues> {
-  control: Control<T>;
-  name: Path<T>;
-  label: string;
-  placeholder: string;
+  control: Control<T>
+  name: Path<T>
+  label: string
+  placeholder: string
 }
 
 export const PasswordInputComponent = <T extends FieldValues>({
@@ -18,7 +19,7 @@ export const PasswordInputComponent = <T extends FieldValues>({
   label,
   placeholder,
 }: IPasswordInputProps<T>) => {
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false)
 
   return (
     <Controller
@@ -27,31 +28,27 @@ export const PasswordInputComponent = <T extends FieldValues>({
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
           <FieldLabel htmlFor={name}>{label}</FieldLabel>
-          <div className="relative">
+          <div className='relative'>
             <Input
               {...field}
               id={name}
-              type={showPassword ? "text" : "password"}
+              type={showPassword ? 'text' : 'password'}
               placeholder={placeholder}
               aria-invalid={fieldState.invalid}
             />
             <Button
-              variant="ghost"
-              size="icon"
-              type="button"
+              variant='ghost'
+              size='icon'
+              type='button'
               onClick={() => setShowPassword((prev) => !prev)}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 hover:bg-transparent"
+              className='absolute top-1/2 right-2.5 -translate-y-1/2 hover:bg-transparent'
             >
-              {showPassword ? (
-                <EyeOffIcon className="size-4" />
-              ) : (
-                <EyeIcon className="size-4" />
-              )}
+              {showPassword ? <EyeOffIcon className='size-4' /> : <EyeIcon className='size-4' />}
             </Button>
           </div>
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
         </Field>
       )}
     />
-  );
-};
+  )
+}

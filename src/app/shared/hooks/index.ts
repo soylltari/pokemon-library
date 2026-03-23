@@ -1,1 +1,1 @@
-export * from "./use-intersection.hook";
+export * from './use-intersection.hook'

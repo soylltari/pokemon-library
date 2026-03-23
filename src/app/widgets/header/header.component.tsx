@@ -1,57 +1,54 @@
-"use client";
-import { LanguagesIcon, LogOutIcon } from "lucide-react";
-import { useState, useEffect } from "react";
+'use client'
+import { LanguagesIcon, LogOutIcon } from 'lucide-react'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
-import { Button } from "@/pkg/theme/ui";
-import { LanguageSwitcher } from "./elements";
-import Image from "next/image";
-import { Link, useRouter } from "@/pkg/locale";
-import { useAuthStore } from "@/app/shared/store/auth.store";
+import { useAuthStore } from '@/app/shared/store/auth.store'
+import { Link, useRouter } from '@/pkg/locale'
+import { Button } from '@/pkg/theme/ui'
+
+import { LanguageSwitcher } from './elements'
 
 export const Header = () => {
-  const logout = useAuthStore((s) => s.logout);
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
-  const router = useRouter();
+  const logout = useAuthStore((s) => s.logout)
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
+  const router = useRouter()
 
-  const [isMounted, setIsMounted] = useState(false);
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
+    setIsMounted(true)
+  }, [])
 
   const handleLogout = () => {
-    logout();
-    router.replace("/login");
-  };
+    logout()
+    router.replace('/login')
+  }
 
-  const showLogout = isMounted && isAuthenticated;
+  const showLogout = isMounted && isAuthenticated
 
   return (
-    <header className="bg-card sticky top-0 z-50 border-b">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6">
-        <Link href="/items">
-          <Image src="/poke-ball.png" alt="Logo" width={50} height={50} />
+    <header className='bg-card sticky top-0 z-50 border-b'>
+      <div className='mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6'>
+        <Link href='/items'>
+          <Image src='/poke-ball.png' alt='Logo' width={50} height={50} />
         </Link>
-        <div className="flex items-center gap-1.5">
+        <div className='flex items-center gap-1.5'>
           <LanguageSwitcher
             trigger={
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Language Switcher"
-              >
+              <Button variant='ghost' size='icon' aria-label='Language Switcher'>
                 <LanguagesIcon />
               </Button>
             }
           />
 
           {showLogout && (
-            <Button variant="ghost" size="icon" onClick={handleLogout}>
+            <Button variant='ghost' size='icon' onClick={handleLogout}>
               <LogOutIcon />
             </Button>
           )}
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
