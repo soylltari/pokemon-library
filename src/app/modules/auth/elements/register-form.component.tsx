@@ -1,14 +1,14 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useAuthStore } from '@/app/shared/store/auth.store'
+import { useAuthStore } from '@/app/shared/store'
+import { useRouter } from '@/pkg/locale'
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from '@/pkg/theme/ui'
 
 import { AuthCardComponent } from './auth-card.component'
@@ -16,7 +16,6 @@ import { PasswordInputComponent } from './password-input.component'
 
 export const RegisterForm = () => {
   const router = useRouter()
-  const locale = useLocale()
   const register = useAuthStore((s) => s.register)
   const t = useTranslations('auth.register')
 
@@ -56,7 +55,7 @@ export const RegisterForm = () => {
         message: t(`errors.api.${result.error.message}`),
       })
     } else {
-      router.push(`/${locale}/items`)
+      router.push('/items')
     }
   }
 
