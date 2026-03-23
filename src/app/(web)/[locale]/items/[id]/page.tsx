@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
 import { fetchPokemonById } from '@/app/entities/api'
 import { PokemonDetail } from '@/app/modules/pokemon-detail'
+import { notFound } from '@/pkg/locale'
 
 type Props = {
   params: Promise<{ id: string; locale: string }>
