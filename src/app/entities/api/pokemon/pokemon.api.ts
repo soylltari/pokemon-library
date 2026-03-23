@@ -1,13 +1,15 @@
+import { restApiFetcher } from '@/pkg/rest-api'
+
 import type { IPokemonDetails, IPokemonListResponse } from '../../models/pokemon.model'
 
-const BASE_URL = 'https://pokeapi.co/api/v2'
 const LIMIT = 20
 
 export const POKEMON_QUERY_KEY = ['pokemon'] as const
-export const POKEMON_DETAIL_QUERY_KEY = ['pokemon', 'detail'] as const
 
 export const fetchPokemonList = async (offset: number): Promise<IPokemonListResponse> => {
-  const response = await fetch(`${BASE_URL}/pokemon?limit=${LIMIT}&offset=${offset}`)
+  const response = await restApiFetcher.get('pokemon', {
+    searchParams: { limit: LIMIT, offset },
+  })
 
   if (!response.ok) {
     throw new Error('Failed to fetch pokemon list')
@@ -17,9 +19,7 @@ export const fetchPokemonList = async (offset: number): Promise<IPokemonListResp
 }
 
 export const fetchPokemonById = async (id: string | number): Promise<IPokemonDetails> => {
-  const response = await fetch(`${BASE_URL}/pokemon/${id}`, {
-    cache: 'no-store',
-  })
+  const response = await restApiFetcher.get(`pokemon/${id}`)
 
   if (!response.ok) {
     throw new Error(`Pokemon ${id} not found`)
