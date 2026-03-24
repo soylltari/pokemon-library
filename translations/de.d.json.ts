@@ -79,6 +79,10 @@ declare const messages: {
       "title": "Pokémon nicht gefunden",
       "description": "Das Pokémon, das Sie suchen, existiert nicht."
     }
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Die Seite, die Sie suchen, existiert nicht."
   }
 };
 export default messages;

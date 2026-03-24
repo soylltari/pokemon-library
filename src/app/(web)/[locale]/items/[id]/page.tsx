@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
 import { fetchPokemonById } from '@/app/entities/api'
@@ -30,7 +31,13 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
 const PokemonDetailPage = async ({ params }: Props) => {
   const { id } = await params
 
-  const pokemon = await fetchPokemonById(id)
+  let pokemon
+  try {
+    pokemon = await fetchPokemonById(id)
+  } catch {
+    notFound()
+  }
+
   return <PokemonDetail pokemon={pokemon} />
 }
 
