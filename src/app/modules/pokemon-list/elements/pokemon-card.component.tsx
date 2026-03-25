@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
+import { envClient } from '@/config/env/env.client'
 import { Link } from '@/pkg/locale'
 import { Card, CardContent } from '@/pkg/theme/ui'
 
@@ -17,7 +18,7 @@ interface ICardTransform {
 }
 
 const PokemonCard = ({ id, name }: IPokemonCardProps) => {
-  const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
+  const spriteUrl = `${envClient.NEXT_PUBLIC_IMAGE_BASE_URL}/${id}.png`
   const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1)
 
   const cardRef = useRef<HTMLDivElement>(null)
