@@ -11,11 +11,14 @@ type Props = {
 
 export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
   const { id } = await params
+
   const t = await getTranslations('metadata')
 
   try {
     const pokemon = await fetchPokemonById(id)
+
     const capitalizedName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+
     return {
       title: `${capitalizedName} - ${t('appName')}`,
       description: `${t('descriptionPrefix')} #${String(pokemon.id).padStart(3, '0')} - ${capitalizedName}`,

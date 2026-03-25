@@ -12,6 +12,7 @@ import { LanguageSwitcherComponent } from './elements'
 const HeaderComponent = () => {
   const logout = useAuthStore((s) => s.logout)
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
+
   const router = useRouter()
 
   const isMounted = useSyncExternalStore(

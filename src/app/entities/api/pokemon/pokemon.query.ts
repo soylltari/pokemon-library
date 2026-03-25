@@ -10,7 +10,9 @@ export const usePokemonListQuery = () =>
     queryFn: ({ pageParam }) => fetchPokemonList(pageParam),
     getNextPageParam: (lastPage) => {
       if (!lastPage.next) return undefined
+
       const url = new URL(lastPage.next)
+
       return Number(url.searchParams.get('offset'))
     },
     initialPageParam: 0,

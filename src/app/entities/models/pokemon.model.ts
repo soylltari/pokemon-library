@@ -33,7 +33,7 @@ interface IPokemonType {
   }
 }
 
-export interface IPokemonStat {
+interface IPokemonStat {
   base_stat: number
   effort: number
   stat: {
@@ -60,4 +60,4 @@ interface IPokemonDetails extends IPokemon {
   abilities: IPokemonAbility[]
 }
 
-export type { IPokemon, IPokemonDetails, IPokemonListItem, IPokemonListResponse }
+export type { IPokemon, IPokemonDetails, IPokemonListItem, IPokemonListResponse, IPokemonStat }
