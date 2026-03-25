@@ -7,9 +7,9 @@ import { useAuthStore } from '@/app/shared/store'
 import { Link, useRouter } from '@/pkg/locale'
 import { Button } from '@/pkg/theme/ui'
 
-import { LanguageSwitcher } from './elements'
+import { LanguageSwitcherComponent } from './elements'
 
-export const Header = () => {
+const HeaderComponent = () => {
   const logout = useAuthStore((s) => s.logout)
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   const router = useRouter()
@@ -34,7 +34,7 @@ export const Header = () => {
           <Image src='/poke-ball.png' alt='Logo' width={50} height={50} />
         </Link>
         <div className='flex items-center gap-1.5'>
-          <LanguageSwitcher
+          <LanguageSwitcherComponent
             trigger={
               <Button variant='ghost' size='icon' aria-label='Language Switcher'>
                 <LanguagesIcon />
@@ -52,3 +52,5 @@ export const Header = () => {
     </header>
   )
 }
+
+export default HeaderComponent

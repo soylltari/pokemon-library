@@ -13,7 +13,7 @@ interface IPasswordInputProps<T extends FieldValues> {
   placeholder: string
 }
 
-export const PasswordInputComponent = <T extends FieldValues>({
+const PasswordInputComponent = <T extends FieldValues>({
   control,
   name,
   label,
@@ -52,3 +52,5 @@ export const PasswordInputComponent = <T extends FieldValues>({
     />
   )
 }
+
+export default PasswordInputComponent

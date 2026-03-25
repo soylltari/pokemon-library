@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
 import { fetchPokemonById } from '@/app/entities/api'
-import { PokemonDetail } from '@/app/modules/pokemon-detail'
+import { PokemonDetailComponent } from '@/app/modules/pokemon-detail'
 
 type Props = {
   params: Promise<{ id: string; locale: string }>
@@ -38,7 +38,7 @@ const PokemonDetailPage = async ({ params }: Props) => {
     notFound()
   }
 
-  return <PokemonDetail pokemon={pokemon} />
+  return <PokemonDetailComponent pokemon={pokemon} />
 }
 
 export default PokemonDetailPage

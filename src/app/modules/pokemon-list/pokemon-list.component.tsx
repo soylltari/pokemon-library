@@ -13,7 +13,7 @@ const getPokemonId = (url: string): number => {
   return Number(parts[parts.length - 1])
 }
 
-export const PokemonListModule = () => {
+const PokemonListComponent = () => {
   const t = useTranslations('library')
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = usePokemonListQuery()
 
@@ -61,3 +61,5 @@ export const PokemonListModule = () => {
     </div>
   )
 }
+
+export default PokemonListComponent

@@ -8,7 +8,7 @@ interface IAuthCardProps {
   children: React.ReactNode
 }
 
-export const AuthCardComponent = ({ children, title, description }: IAuthCardProps) => {
+const AuthCardComponent = ({ children, title, description }: IAuthCardProps) => {
   return (
     <div>
       <Card className='w-full max-w-sm bg-transparent shadow-none ring-0'>
@@ -21,3 +21,5 @@ export const AuthCardComponent = ({ children, title, description }: IAuthCardPro
     </div>
   )
 }
+
+export default AuthCardComponent

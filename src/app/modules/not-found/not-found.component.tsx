@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 
-const NotFound = () => {
+const NotFoundComponent = () => {
   const t = useTranslations('notFound')
   return (
     <div className='flex min-h-[calc(100vh-100px)] flex-col items-center justify-center'>
@@ -13,4 +13,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound
+export default NotFoundComponent

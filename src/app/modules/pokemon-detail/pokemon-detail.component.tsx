@@ -16,7 +16,7 @@ interface IPokemonDetailProps {
   pokemon: IPokemonDetails
 }
 
-export const PokemonDetail = ({ pokemon }: IPokemonDetailProps) => {
+const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
   const t = useTranslations('detail')
 
   const artwork = pokemon.sprites.other['official-artwork'].front_default ?? pokemon.sprites.front_default
@@ -127,3 +127,5 @@ export const PokemonDetail = ({ pokemon }: IPokemonDetailProps) => {
     </div>
   )
 }
+
+export default PokemonDetailComponent

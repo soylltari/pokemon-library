@@ -16,7 +16,7 @@ interface ICardTransform {
   scale: number
 }
 
-export const PokemonCard = ({ id, name }: IPokemonCardProps) => {
+const PokemonCard = ({ id, name }: IPokemonCardProps) => {
   const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`
   const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1)
 
@@ -125,3 +125,5 @@ export const PokemonCard = ({ id, name }: IPokemonCardProps) => {
     </Link>
   )
 }
+
+export default PokemonCard

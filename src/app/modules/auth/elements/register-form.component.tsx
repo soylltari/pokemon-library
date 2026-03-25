@@ -11,12 +11,14 @@ import { useAuthStore } from '@/app/shared/store'
 import { useRouter } from '@/pkg/locale'
 import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from '@/pkg/theme/ui'
 
-import { AuthCardComponent } from './auth-card.component'
-import { PasswordInputComponent } from './password-input.component'
+import AuthCardComponent from './auth-card.component'
+import PasswordInputComponent from './password-input.component'
 
-export const RegisterForm = () => {
+const RegisterFormComponent = () => {
   const router = useRouter()
+
   const register = useAuthStore((s) => s.register)
+
   const t = useTranslations('auth.register')
 
   const formSchema = useMemo(
@@ -47,7 +49,7 @@ export const RegisterForm = () => {
     defaultValues: { name: '', email: '', password: '', confirmPassword: '' },
   })
 
-  const onSubmit = async (data: FormValues) => {
+  const handleOnSubmit = async (data: FormValues) => {
     const result = await register(data.name, data.email, data.password)
 
     if (!result.success && result.error) {
@@ -61,7 +63,7 @@ export const RegisterForm = () => {
 
   return (
     <AuthCardComponent title={t('title')} description={t('description')}>
-      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+      <form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col gap-4'>
         <FieldGroup>
           <Controller
             name='name'
@@ -120,3 +122,5 @@ export const RegisterForm = () => {
     </AuthCardComponent>
   )
 }
+
+export default RegisterFormComponent

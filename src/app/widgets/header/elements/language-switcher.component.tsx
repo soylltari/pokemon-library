@@ -18,7 +18,7 @@ const LOCALE_LABELS: Record<string, string> = {
   de: 'Deutsch',
 }
 
-export const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
+const LanguageSwitcherComponent = ({ trigger }: { trigger: ReactNode }) => {
   const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
@@ -46,3 +46,5 @@ export const LanguageSwitcher = ({ trigger }: { trigger: ReactNode }) => {
     </DropdownMenu>
   )
 }
+
+export default LanguageSwitcherComponent
