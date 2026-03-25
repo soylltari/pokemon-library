@@ -13,14 +13,10 @@ interface IPasswordInputProps<T extends FieldValues> {
   placeholder: string
 }
 
-export const PasswordInputComponent = <T extends FieldValues>({
-  control,
-  name,
-  label,
-  placeholder,
-}: IPasswordInputProps<T>) => {
+const PasswordInputComponent = <T extends FieldValues>(props: IPasswordInputProps<T>) => {
   const [showPassword, setShowPassword] = useState(false)
 
+  const { control, name, label, placeholder } = props
   return (
     <Controller
       name={name}
@@ -28,6 +24,7 @@ export const PasswordInputComponent = <T extends FieldValues>({
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
           <FieldLabel htmlFor={name}>{label}</FieldLabel>
+
           <div className='relative'>
             <Input
               {...field}
@@ -36,6 +33,7 @@ export const PasswordInputComponent = <T extends FieldValues>({
               placeholder={placeholder}
               aria-invalid={fieldState.invalid}
             />
+
             <Button
               variant='ghost'
               size='icon'
@@ -52,3 +50,5 @@ export const PasswordInputComponent = <T extends FieldValues>({
     />
   )
 }
+
+export default PasswordInputComponent

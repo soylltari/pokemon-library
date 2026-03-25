@@ -2,7 +2,7 @@
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/pkg/theme/ui'
 
-import { LoginForm, RegisterForm } from './elements'
+import { LoginFormComponent, RegisterFormComponent } from './elements'
 
 const tabs = [
   {
@@ -15,7 +15,7 @@ const tabs = [
   },
 ]
 
-export const AuthTabs = () => {
+const AuthComponent = () => {
   return (
     <div className='mx-auto w-full max-w-sm'>
       <Tabs defaultValue='login' className='w-full'>
@@ -32,13 +32,15 @@ export const AuthTabs = () => {
         </TabsList>
 
         <TabsContent value='login'>
-          <LoginForm />
+          <LoginFormComponent />
         </TabsContent>
 
         <TabsContent value='register'>
-          <RegisterForm />
+          <RegisterFormComponent />
         </TabsContent>
       </Tabs>
     </div>
   )
 }
+
+export default AuthComponent

@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/pkg/theme/ui'
 
 interface IAuthCardProps {
   title: string
   description: string
-  children: React.ReactNode
+  children: ReactNode
 }
 
-export const AuthCardComponent = ({ children, title, description }: IAuthCardProps) => {
+const AuthCardComponent = ({ children, title, description }: IAuthCardProps) => {
   return (
     <div>
       <Card className='w-full max-w-sm bg-transparent shadow-none ring-0'>
@@ -21,3 +21,5 @@ export const AuthCardComponent = ({ children, title, description }: IAuthCardPro
     </div>
   )
 }
+
+export default AuthCardComponent

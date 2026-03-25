@@ -13,8 +13,9 @@ const getPokemonId = (url: string): number => {
   return Number(parts[parts.length - 1])
 }
 
-export const PokemonListModule = () => {
+const PokemonListComponent = () => {
   const t = useTranslations('library')
+
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = usePokemonListQuery()
 
   const handleIntersect = useCallback(() => {
@@ -45,6 +46,8 @@ export const PokemonListModule = () => {
 
   return (
     <div className='mx-auto max-w-7xl px-4'>
+      <h1 className='my-10 text-center'>{t('title')}</h1>
+
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {pokemon.map(({ name, url }) => {
           const id = getPokemonId(url)
@@ -61,3 +64,5 @@ export const PokemonListModule = () => {
     </div>
   )
 }
+
+export default PokemonListComponent

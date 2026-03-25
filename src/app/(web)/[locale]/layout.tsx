@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
+import { ReactNode } from 'react'
 
-import { Header } from '@/app/widgets/header'
+import HeaderComponent from '@/app/widgets/header/header.component'
 import { inter, montserrat } from '@/config/fonts'
 import { routing } from '@/pkg/locale'
 import { RestApiProvider } from '@/pkg/rest-api'
@@ -29,7 +30,7 @@ export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode
+  children: ReactNode
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
@@ -42,7 +43,7 @@ export default async function LocaleLayout({
       <RestApiProvider>
         <html lang={locale} className={`${inter.variable} ${montserrat.variable}`}>
           <body suppressHydrationWarning className='antialiased'>
-            <Header />
+            <HeaderComponent />
             {children}
           </body>
         </html>

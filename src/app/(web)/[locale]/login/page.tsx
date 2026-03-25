@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { AuthTabs } from '@/app/modules/auth/auth.module'
+import { AuthComponent } from '@/app/modules/auth'
 
-const LoginPage = async () => {
+const LoginPage = () => {
   return (
     <div className='flex min-h-[calc(100vh-67px)] items-center justify-center'>
-      <AuthTabs />
+      <AuthComponent />
     </div>
   )
 }

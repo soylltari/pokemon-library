@@ -1,2 +1,2 @@
-export * from './pokemon-detail.component'
-export * from './pokemon-detail.constant'
+export * from './stat-block.component'
+export * from './stat-block.constant'

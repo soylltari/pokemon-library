@@ -1,1 +1,1 @@
-export * from './pokemon-card.component'
+export { default as PokemonCard } from './pokemon-card.component'

@@ -1,1 +1,1 @@
-export * from './pokemon-list.module'
+export { default as PokemonListComponent } from './pokemon-list.component'

@@ -2,21 +2,24 @@
 
 import { useTranslations } from 'next-intl'
 import { useMemo } from 'react'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useAuthStore } from '@/app/shared/store'
 import { useRouter } from '@/pkg/locale'
-import { Button, Field, FieldError, FieldGroup, FieldLabel, Input } from '@/pkg/theme/ui'
+import { Button, FieldGroup } from '@/pkg/theme/ui'
 
-import { AuthCardComponent } from './auth-card.component'
-import { PasswordInputComponent } from './password-input.component'
+import AuthCardComponent from './auth-card.component'
+import ControlledInputComponent from './controlled-input.component'
+import PasswordInputComponent from './password-input.component'
 
-export const LoginForm = () => {
+const LoginFormComponent = () => {
   const router = useRouter()
+
   const login = useAuthStore((s) => s.login)
+
   const t = useTranslations('auth.login')
 
   const formSchema = useMemo(
@@ -39,7 +42,7 @@ export const LoginForm = () => {
     defaultValues: { email: '', password: '' },
   })
 
-  const onSubmit = async (data: FormValues) => {
+  const handleOnSubmit = async (data: FormValues) => {
     const result = await login(data.email, data.password)
 
     if (!result.success && result.error) {
@@ -53,24 +56,14 @@ export const LoginForm = () => {
 
   return (
     <AuthCardComponent title={t('title')} description={t('description')}>
-      <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
+      <form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col gap-4'>
         <FieldGroup>
-          <Controller
-            name='email'
+          <ControlledInputComponent
             control={control}
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel htmlFor='email'>{t('emailLabel')}</FieldLabel>
-                <Input
-                  {...field}
-                  id='email'
-                  type='email'
-                  placeholder={t('emailPlaceholder')}
-                  aria-invalid={fieldState.invalid}
-                />
-                {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-              </Field>
-            )}
+            name='email'
+            label={t('emailLabel')}
+            placeholder={t('emailPlaceholder')}
+            type='email'
           />
 
           <PasswordInputComponent
@@ -88,3 +81,5 @@ export const LoginForm = () => {
     </AuthCardComponent>
   )
 }
+
+export default LoginFormComponent
