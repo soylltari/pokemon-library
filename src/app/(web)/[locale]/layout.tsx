@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
+import { ReactNode } from 'react'
 
 import HeaderComponent from '@/app/widgets/header/header.component'
 import { inter, montserrat } from '@/config/fonts'
@@ -29,7 +30,7 @@ export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode
+  children: ReactNode
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params

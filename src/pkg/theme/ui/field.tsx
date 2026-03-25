@@ -1,7 +1,7 @@
 'use client'
 
 import { cva, type VariantProps } from 'class-variance-authority'
-import { useMemo } from 'react'
+import { ReactNode, useMemo } from 'react'
 
 import { cn } from '@/pkg/theme/lib/utils'
 import { Label } from '@/pkg/theme/ui/label'
@@ -136,7 +136,7 @@ function FieldSeparator({
   className,
   ...props
 }: React.ComponentProps<'div'> & {
-  children?: React.ReactNode
+  children?: ReactNode
 }) {
   return (
     <div
