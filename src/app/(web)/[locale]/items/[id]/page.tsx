@@ -2,8 +2,17 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import { fetchPokemonById } from '@/app/entities/api'
+import { fetchAllPokemonIds, fetchPokemonById } from '@/app/entities/api'
 import { PokemonDetailComponent } from '@/app/modules/pokemon-detail'
+import { routing } from '@/pkg/locale'
+
+export const revalidate = 3600
+
+export const generateStaticParams = async () => {
+  const ids = await fetchAllPokemonIds()
+
+  return routing.locales.flatMap((locale) => ids.map((id) => ({ locale, id: String(id) })))
+}
 
 type Props = {
   params: Promise<{ id: string; locale: string }>

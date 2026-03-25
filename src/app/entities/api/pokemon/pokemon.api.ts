@@ -1,3 +1,5 @@
+import { cache } from 'react'
+
 import { restApiFetcher } from '@/pkg/rest-api'
 
 import type { IPokemonDetails, IPokemonListResponse } from '../../models/pokemon.model'
@@ -18,7 +20,7 @@ export const fetchPokemonList = async (offset: number): Promise<IPokemonListResp
   return response.json()
 }
 
-export const fetchPokemonById = async (id: string | number): Promise<IPokemonDetails> => {
+export const fetchPokemonById = cache(async (id: string | number): Promise<IPokemonDetails> => {
   const response = await restApiFetcher.get(`pokemon/${id}`)
 
   if (!response.ok) {
@@ -26,4 +28,21 @@ export const fetchPokemonById = async (id: string | number): Promise<IPokemonDet
   }
 
   return response.json()
+})
+
+export const fetchAllPokemonIds = async (): Promise<number[]> => {
+  const response = await restApiFetcher.get('pokemon', {
+    searchParams: { limit: 10000, offset: 0 },
+  })
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch all pokemon ids')
+  }
+
+  const data: IPokemonListResponse = await response.json()
+
+  return data.results.map((p) => {
+    const parts = p.url.split('/')
+    return Number(parts[parts.length - 2])
+  })
 }
