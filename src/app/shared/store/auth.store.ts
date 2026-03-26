@@ -98,14 +98,6 @@ export const useAuthStore = create<IAuthState>()(
     }),
     {
       name: 'auth-storage',
-      storage: {
-        getItem: (name) => {
-          if (typeof window === 'undefined') return null
-          return JSON.parse(localStorage.getItem(name) ?? 'null')
-        },
-        setItem: (name, value) => localStorage.setItem(name, JSON.stringify(value)),
-        removeItem: (name) => localStorage.removeItem(name),
-      },
       onRehydrateStorage: () => (state) => {
         if (state?.token) {
           document.cookie = `auth-token=${state.token}; path=/; SameSite=Lax`
