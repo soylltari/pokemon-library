@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
 import { ReactNode } from 'react'
@@ -38,12 +39,15 @@ export default async function LocaleLayout({
 
   const messages = await getMessages()
 
+  const cookieStore = await cookies()
+  const isAuthenticated = cookieStore.has('auth-token')
+
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <RestApiProvider>
         <html lang={locale} className={`${inter.variable} ${montserrat.variable}`}>
           <body suppressHydrationWarning className='antialiased'>
-            <HeaderComponent />
+            <HeaderComponent isAuthenticated={isAuthenticated} />
             {children}
           </body>
         </html>

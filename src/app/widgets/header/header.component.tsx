@@ -1,7 +1,6 @@
 'use client'
 import { LanguagesIcon, LogOutIcon } from 'lucide-react'
 import Image from 'next/image'
-import { useSyncExternalStore } from 'react'
 
 import { useAuthStore } from '@/app/shared/store'
 import { Link, useRouter } from '@/pkg/locale'
@@ -9,25 +8,18 @@ import { Button } from '@/pkg/theme/ui'
 
 import { LanguageSwitcherComponent } from './elements'
 
-const HeaderComponent = () => {
+const HeaderComponent = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
   const logout = useAuthStore((s) => s.logout)
-  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
+  const clientAuthenticated = useAuthStore((s) => s.isAuthenticated)
+
+  const isAuth = isAuthenticated || clientAuthenticated
 
   const router = useRouter()
-
-  const isMounted = useSyncExternalStore(
-    () => () => {},
-    () => true,
-    () => false,
-  )
 
   const handleLogout = () => {
     logout()
     router.replace('/login')
   }
-
-  const showLogout = isMounted && isAuthenticated
-
   return (
     <header className='bg-card sticky top-0 z-50 border-b'>
       <div className='mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6'>
@@ -43,7 +35,7 @@ const HeaderComponent = () => {
             }
           />
 
-          {showLogout && (
+          {isAuth && (
             <Button variant='ghost' size='icon' onClick={handleLogout}>
               <LogOutIcon />
             </Button>
