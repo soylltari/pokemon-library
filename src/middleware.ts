@@ -7,6 +7,7 @@ const intlMiddleware = createMiddleware(routing)
 
 const PROTECTED_SEGMENTS = ['/items']
 
+// isProtectedPath - function to check if the path is protected
 function isProtectedPath(pathname: string): boolean {
   return routing.locales.some((locale) => {
     const withoutLocale = pathname.replace(new RegExp(`^/${locale}`), '')
@@ -14,6 +15,7 @@ function isProtectedPath(pathname: string): boolean {
   })
 }
 
+// middleware
 export default function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 

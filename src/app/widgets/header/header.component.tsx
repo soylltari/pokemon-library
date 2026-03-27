@@ -9,10 +9,12 @@ import { Button } from '@/pkg/theme/ui/button'
 
 import { LanguageSwitcherComponent } from './elements'
 
+// interface
 interface IProps {
   isAuthenticated: boolean
 }
 
+// component
 const HeaderComponent: FC<Readonly<IProps>> = (props: IProps) => {
   const { isAuthenticated } = props
 
@@ -28,6 +30,7 @@ const HeaderComponent: FC<Readonly<IProps>> = (props: IProps) => {
     router.replace('/login')
   }
 
+  // render
   return (
     <header className='bg-card sticky top-0 z-50 border-b'>
       <div className='mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6'>

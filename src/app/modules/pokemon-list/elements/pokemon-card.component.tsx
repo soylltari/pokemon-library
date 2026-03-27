@@ -7,6 +7,7 @@ import { envClient } from '@/config/env/env.client'
 import { Link } from '@/pkg/locale'
 import { Card, CardContent } from '@/pkg/theme/ui/card'
 
+// interface
 interface IProps {
   id: number
   name: string
@@ -18,6 +19,7 @@ interface ICardTransform {
   scale: number
 }
 
+// component
 const PokemonCardComponent: FC<Readonly<IProps>> = (props: IProps) => {
   const { id, name } = props
 
@@ -116,6 +118,7 @@ const PokemonCardComponent: FC<Readonly<IProps>> = (props: IProps) => {
     }
   }, [])
 
+  // render
   return (
     <Link href={`/items/${id}`}>
       <Card ref={cardRef} className='relative h-80 cursor-pointer overflow-hidden rounded-2xl'>

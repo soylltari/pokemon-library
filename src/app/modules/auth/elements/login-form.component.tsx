@@ -16,8 +16,10 @@ import { useRouter } from '@/pkg/locale'
 import { Button } from '@/pkg/theme/ui/button'
 import { FieldGroup } from '@/pkg/theme/ui/field'
 
+// interface
 interface IProps {}
 
+// component
 const LoginFormComponent: FC<Readonly<IProps>> = () => {
   const router = useRouter()
 
@@ -57,6 +59,7 @@ const LoginFormComponent: FC<Readonly<IProps>> = () => {
     }
   }
 
+  // render
   return (
     <AuthCardComponent title={t('title')} description={t('description')}>
       <form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col gap-4'>

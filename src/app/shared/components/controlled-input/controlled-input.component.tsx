@@ -3,6 +3,7 @@ import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form'
 import { Field, FieldError, FieldLabel } from '@/pkg/theme/ui/field'
 import { Input } from '@/pkg/theme/ui/input'
 
+// interface
 interface IProps<T extends FieldValues> {
   control: Control<T>
   name: FieldPath<T>
@@ -12,9 +13,11 @@ interface IProps<T extends FieldValues> {
   id?: string
 }
 
+// component
 const ControlledInputComponent = <T extends FieldValues>(props: Readonly<IProps<T>>) => {
   const { control, name, label, placeholder, type = 'text', id } = props
 
+  // render
   return (
     <Controller
       name={name}

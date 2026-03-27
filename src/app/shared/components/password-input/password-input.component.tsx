@@ -8,6 +8,7 @@ import { Button } from '@/pkg/theme/ui/button'
 import { Field, FieldError, FieldLabel } from '@/pkg/theme/ui/field'
 import { Input } from '@/pkg/theme/ui/input'
 
+// interface
 interface IProps<T extends FieldValues> {
   control: Control<T>
   name: Path<T>
@@ -15,11 +16,13 @@ interface IProps<T extends FieldValues> {
   placeholder: string
 }
 
+// component
 const PasswordInputComponent = <T extends FieldValues>(props: Readonly<IProps<T>>) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const { control, name, label, placeholder } = props
 
+  // render
   return (
     <Controller
       name={name}

@@ -13,15 +13,18 @@ import {
   DropdownMenuTrigger,
 } from '@/pkg/theme/ui/dropdown-menu'
 
+// interface
 interface IProps {
   trigger: ReactNode
 }
 
+// constants
 const LOCALE_LABELS: Record<string, string> = {
   en: 'English',
   de: 'Deutsch',
 }
 
+// component
 const LanguageSwitcherComponent: FC<Readonly<IProps>> = (props: IProps) => {
   const { trigger } = props
 
@@ -33,6 +36,7 @@ const LanguageSwitcherComponent: FC<Readonly<IProps>> = (props: IProps) => {
     router.replace(pathname, { locale: newLocale })
   }
 
+  // render
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{trigger}</DropdownMenuTrigger>

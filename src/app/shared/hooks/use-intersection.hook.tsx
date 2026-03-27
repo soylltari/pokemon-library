@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
+// hook
 export const useIntersection = (callback: () => void) => {
   const ref = useRef<HTMLDivElement>(null)
   const callbackRef = useRef(callback)

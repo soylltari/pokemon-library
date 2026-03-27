@@ -13,10 +13,12 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/pkg/theme/ui/card'
 
 import { StatBlockComponent, TYPE_COLORS } from './elements'
 
+// interface
 interface IProps {
   pokemon: IPokemonDetails
 }
 
+// component
 const PokemonDetailComponent: FC<Readonly<IProps>> = (props: IProps) => {
   const { pokemon } = props
 
@@ -24,6 +26,7 @@ const PokemonDetailComponent: FC<Readonly<IProps>> = (props: IProps) => {
 
   const artwork = pokemon.sprites.other['official-artwork'].front_default ?? pokemon.sprites.front_default
 
+  // render
   return (
     <div className='mx-auto max-w-7xl px-4 py-4 md:px-10 md:py-6'>
       <div className='mb-4'>

@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+// interface
 interface IUser {
   id: string
   name: string
@@ -23,6 +24,7 @@ interface IStore {
   logout: () => void
 }
 
+// store
 export const useAuthStore = create<IStore>()(
   persist(
     (set, get) => ({
@@ -31,6 +33,7 @@ export const useAuthStore = create<IStore>()(
       token: null,
       isAuthenticated: false,
 
+      // login - async function to simulate a login process
       login: async (email, password) => {
         await new Promise((resolve) => setTimeout(resolve, 1500))
 
@@ -62,6 +65,7 @@ export const useAuthStore = create<IStore>()(
         return { success: true }
       },
 
+      // register - async function to simulate a register process
       register: async (name, email, password) => {
         await new Promise((resolve) => setTimeout(resolve, 1500))
 
@@ -98,6 +102,7 @@ export const useAuthStore = create<IStore>()(
         return { success: true }
       },
 
+      // logout - function to logout the user
       logout: () => {
         set({ user: null, token: null, isAuthenticated: false })
 

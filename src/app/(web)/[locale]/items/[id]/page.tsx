@@ -6,18 +6,22 @@ import { fetchAllPokemonIds, fetchPokemonById } from '@/app/entities/api'
 import { PokemonDetailComponent } from '@/app/modules/pokemon-detail'
 import { routing } from '@/pkg/locale'
 
+// interface
 interface IProps {
   params: Promise<{ id: string; locale: string }>
 }
 
+// revalidate
 export const revalidate = 3600
 
+// generateStaticParams
 export const generateStaticParams = async () => {
   const ids = await fetchAllPokemonIds()
 
   return routing.locales.flatMap((locale) => ids.map((id) => ({ locale, id: String(id) })))
 }
 
+// metadata
 export const generateMetadata = async ({ params }: IProps): Promise<Metadata> => {
   const { id } = await params
 
@@ -40,6 +44,7 @@ export const generateMetadata = async ({ params }: IProps): Promise<Metadata> =>
   }
 }
 
+// component
 const Page: NextPage<Readonly<IProps>> = async (props: IProps) => {
   const { params } = props
 
@@ -52,6 +57,7 @@ const Page: NextPage<Readonly<IProps>> = async (props: IProps) => {
     notFound()
   }
 
+  // render
   return <PokemonDetailComponent pokemon={pokemon} />
 }
 

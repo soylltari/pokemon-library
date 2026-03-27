@@ -9,14 +9,17 @@ import { useIntersection } from '@/app/shared/hooks'
 
 import { PokemonCardComponent } from './elements'
 
+// interface
 interface IProps {}
 
+// getPokemonId
 const getPokemonId = (url: string): number => {
   const parts = url.split('/').filter(Boolean)
 
   return Number(parts[parts.length - 1])
 }
 
+// component
 const PokemonListComponent: FC<Readonly<IProps>> = () => {
   const t = useTranslations('library')
 
@@ -32,6 +35,7 @@ const PokemonListComponent: FC<Readonly<IProps>> = () => {
 
   const pokemon = data?.pages.flatMap((page) => page.results) ?? []
 
+  // render
   return (
     <div className='mx-auto max-w-7xl px-4'>
       <h1 className='my-10 text-center'>{t('title')}</h1>

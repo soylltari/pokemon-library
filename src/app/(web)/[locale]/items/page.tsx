@@ -6,10 +6,13 @@ import { fetchPokemonList, POKEMON_QUERY_KEY } from '@/app/entities/api/pokemon/
 import { PokemonListComponent } from '@/app/modules/pokemon-list'
 import { getQueryClient } from '@/pkg/rest-api'
 
-export const revalidate = 3600
-
+// interface
 interface IProps {}
 
+// revalidate
+export const revalidate = 3600
+
+// component
 const Page: NextPage<Readonly<IProps>> = async () => {
   const queryClient = getQueryClient()
 
@@ -19,6 +22,7 @@ const Page: NextPage<Readonly<IProps>> = async () => {
     initialPageParam: 0,
   })
 
+  // render
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <PokemonListComponent />

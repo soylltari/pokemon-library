@@ -6,8 +6,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/pkg/theme/ui/tabs'
 
 import { LoginFormComponent, RegisterFormComponent } from './elements'
 
+// interface
 interface IProps {}
 
+// constants
 const TABS = [
   {
     value: 'login',
@@ -19,7 +21,9 @@ const TABS = [
   },
 ]
 
+// component
 const AuthComponent: FC<Readonly<IProps>> = () => {
+  // render
   return (
     <div className='mx-auto w-full max-w-sm'>
       <Tabs defaultValue='login' className='w-full'>

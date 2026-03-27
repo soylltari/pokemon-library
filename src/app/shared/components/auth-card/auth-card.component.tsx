@@ -2,15 +2,18 @@ import type { FC, ReactNode } from 'react'
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/pkg/theme/ui/card'
 
+// interface
 interface IProps {
   title: string
   description: string
   children: ReactNode
 }
 
+// component
 const AuthCardComponent: FC<Readonly<IProps>> = (props: IProps) => {
   const { children, title, description } = props
 
+  // render
   return (
     <div>
       <Card className='w-full max-w-sm bg-transparent shadow-none ring-0'>

@@ -11,6 +11,7 @@ import { RestApiProvider } from '@/pkg/rest-api'
 
 import '@/config/styles/globals.css'
 
+// metadata
 export const generateMetadata = async (): Promise<Metadata> => {
   const t = await getTranslations('metadata')
 
@@ -23,10 +24,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
   }
 }
 
+// generateStaticParams
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
+// component
 export default async function LocaleLayout({
   children,
   params,
@@ -42,12 +45,14 @@ export default async function LocaleLayout({
   const cookieStore = await cookies()
   const isAuthenticated = cookieStore.has('auth-token')
 
+  // render
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
       <RestApiProvider>
         <html lang={locale} className={`${inter.variable} ${montserrat.variable}`}>
           <body suppressHydrationWarning className='antialiased'>
             <HeaderComponent isAuthenticated={isAuthenticated} />
+
             {children}
           </body>
         </html>

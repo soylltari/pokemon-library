@@ -4,10 +4,13 @@ import { restApiFetcher } from '@/pkg/rest-api'
 
 import type { IPokemonDetails, IPokemonListResponse } from '../../models/pokemon.model'
 
+// constants
 const LIMIT = 20
 
+// query key
 export const POKEMON_QUERY_KEY = ['pokemon'] as const
 
+// fetchPokemonList
 export const fetchPokemonList = async (offset: number): Promise<IPokemonListResponse> => {
   const response = await restApiFetcher.get('pokemon', {
     searchParams: { limit: LIMIT, offset },
@@ -20,6 +23,7 @@ export const fetchPokemonList = async (offset: number): Promise<IPokemonListResp
   return response.json()
 }
 
+// fetchPokemonById
 export const fetchPokemonById = cache(async (id: string | number): Promise<IPokemonDetails> => {
   const response = await restApiFetcher.get(`pokemon/${id}`)
 
@@ -30,6 +34,7 @@ export const fetchPokemonById = cache(async (id: string | number): Promise<IPoke
   return response.json()
 })
 
+// fetchAllPokemonIds
 export const fetchAllPokemonIds = async (): Promise<number[]> => {
   const response = await restApiFetcher.get('pokemon', {
     searchParams: { limit: 10000, offset: 0 },
