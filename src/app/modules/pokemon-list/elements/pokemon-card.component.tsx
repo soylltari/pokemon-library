@@ -1,12 +1,14 @@
 'use client'
 import Image from 'next/image'
+import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
 
 import { envClient } from '@/config/env/env.client'
 import { Link } from '@/pkg/locale'
-import { Card, CardContent } from '@/pkg/theme/ui'
+import { Card, CardContent } from '@/pkg/theme/ui/card'
 
-interface IPokemonCardProps {
+// interface
+interface IProps {
   id: number
   name: string
 }
@@ -17,7 +19,10 @@ interface ICardTransform {
   scale: number
 }
 
-const PokemonCard = ({ id, name }: IPokemonCardProps) => {
+// component
+const PokemonCardComponent: FC<Readonly<IProps>> = (props: IProps) => {
+  const { id, name } = props
+
   const spriteUrl = `${envClient.NEXT_PUBLIC_IMAGE_BASE_URL}/${id}.png`
   const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1)
 
@@ -113,10 +118,12 @@ const PokemonCard = ({ id, name }: IPokemonCardProps) => {
     }
   }, [])
 
+  // render
   return (
     <Link href={`/items/${id}`}>
       <Card ref={cardRef} className='relative h-80 cursor-pointer overflow-hidden rounded-2xl'>
         <Image ref={imageRef} src={spriteUrl} alt={name} fill className='z-10 object-contain p-4' />
+
         <CardContent className='relative z-0 flex h-full items-start p-4'>
           <p className='bg-accent w-full rounded-2xl p-1 text-center text-lg font-semibold tracking-wide drop-shadow-md'>
             {capitalizedName}
@@ -127,4 +134,4 @@ const PokemonCard = ({ id, name }: IPokemonCardProps) => {
   )
 }
 
-export default PokemonCard
+export default PokemonCardComponent

@@ -1,21 +1,26 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { AuthCardComponent } from '@/app/shared/components/auth-card'
+import { ControlledInputComponent } from '@/app/shared/components/controlled-input'
+import { PasswordInputComponent } from '@/app/shared/components/password-input'
 import { useAuthStore } from '@/app/shared/store'
 import { useRouter } from '@/pkg/locale'
-import { Button, FieldGroup } from '@/pkg/theme/ui'
+import { Button } from '@/pkg/theme/ui/button'
+import { FieldGroup } from '@/pkg/theme/ui/field'
 
-import AuthCardComponent from './auth-card.component'
-import ControlledInputComponent from './controlled-input.component'
-import PasswordInputComponent from './password-input.component'
+// interface
+interface IProps {}
 
-const LoginFormComponent = () => {
+// component
+const LoginFormComponent: FC<Readonly<IProps>> = () => {
   const router = useRouter()
 
   const login = useAuthStore((s) => s.login)
@@ -54,6 +59,7 @@ const LoginFormComponent = () => {
     }
   }
 
+  // render
   return (
     <AuthCardComponent title={t('title')} description={t('description')}>
       <form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col gap-4'>

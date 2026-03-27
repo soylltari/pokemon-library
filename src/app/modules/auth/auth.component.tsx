@@ -1,26 +1,23 @@
 'use client'
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/pkg/theme/ui'
+import type { FC } from 'react'
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/pkg/theme/ui/tabs'
+
+import { AUTH_TABS } from './auth.constants'
 import { LoginFormComponent, RegisterFormComponent } from './elements'
 
-const tabs = [
-  {
-    value: 'login',
-    label: 'Sign In',
-  },
-  {
-    value: 'register',
-    label: 'Register',
-  },
-]
+// interface
+interface IProps {}
 
-const AuthComponent = () => {
+// component
+const AuthComponent: FC<Readonly<IProps>> = () => {
+  // render
   return (
     <div className='mx-auto w-full max-w-sm'>
       <Tabs defaultValue='login' className='w-full'>
         <TabsList className='bg-background mb-4 grid w-full grid-cols-2 gap-1 border p-1'>
-          {tabs.map((tab) => (
+          {AUTH_TABS.map((tab) => (
             <TabsTrigger
               key={tab.value}
               value={tab.value}

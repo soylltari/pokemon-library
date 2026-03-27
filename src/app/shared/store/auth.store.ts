@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
+// interface
 interface IUser {
   id: string
   name: string
@@ -13,7 +14,7 @@ interface IAuthResult {
   error?: { field: 'email' | 'password'; message: string }
 }
 
-interface IAuthState {
+interface IStore {
   users: IUser[]
   user: IUser | null
   token: string | null
@@ -23,7 +24,8 @@ interface IAuthState {
   logout: () => void
 }
 
-export const useAuthStore = create<IAuthState>()(
+// store
+export const useAuthStore = create<IStore>()(
   persist(
     (set, get) => ({
       users: [],
@@ -31,6 +33,7 @@ export const useAuthStore = create<IAuthState>()(
       token: null,
       isAuthenticated: false,
 
+      // login - async function to simulate a login process
       login: async (email, password) => {
         await new Promise((resolve) => setTimeout(resolve, 1500))
 
@@ -54,11 +57,15 @@ export const useAuthStore = create<IAuthState>()(
         }
 
         const token = crypto.randomUUID()
+
         set({ user: existing, token, isAuthenticated: true })
+
         document.cookie = `auth-token=${token}; path=/; SameSite=Lax`
+
         return { success: true }
       },
 
+      // register - async function to simulate a register process
       register: async (name, email, password) => {
         await new Promise((resolve) => setTimeout(resolve, 1500))
 
@@ -80,24 +87,31 @@ export const useAuthStore = create<IAuthState>()(
           email,
           password,
         }
+
         const token = crypto.randomUUID()
+
         set((state) => ({
           users: [...state.users, newUser],
           user: newUser,
           token,
           isAuthenticated: true,
         }))
+
         document.cookie = `auth-token=${token}; path=/; SameSite=Lax`
+
         return { success: true }
       },
 
+      // logout - function to logout the user
       logout: () => {
         set({ user: null, token: null, isAuthenticated: false })
+
         document.cookie = 'auth-token=; path=/; max-age=0'
       },
     }),
     {
       name: 'auth-storage',
+
       onRehydrateStorage: () => (state) => {
         if (state?.token) {
           document.cookie = `auth-token=${state.token}; path=/; SameSite=Lax`

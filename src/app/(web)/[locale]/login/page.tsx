@@ -1,8 +1,14 @@
-import React from 'react'
+import type { NextPage } from 'next'
 
 import { AuthComponent } from '@/app/modules/auth'
 
-const LoginPage = () => {
+// interface
+interface IProps {}
+
+// component
+
+const Page: NextPage<Readonly<IProps>> = async () => {
+  // render
   return (
     <div className='flex min-h-[calc(100vh-67px)] items-center justify-center'>
       <AuthComponent />
@@ -10,4 +16,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default Page

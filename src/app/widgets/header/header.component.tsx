@@ -1,14 +1,23 @@
 'use client'
 import { LanguagesIcon, LogOutIcon } from 'lucide-react'
 import Image from 'next/image'
+import type { FC } from 'react'
 
 import { useAuthStore } from '@/app/shared/store'
 import { Link, useRouter } from '@/pkg/locale'
-import { Button } from '@/pkg/theme/ui'
+import { Button } from '@/pkg/theme/ui/button'
 
 import { LanguageSwitcherComponent } from './elements'
 
-const HeaderComponent = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
+// interface
+interface IProps {
+  isAuthenticated: boolean
+}
+
+// component
+const HeaderComponent: FC<Readonly<IProps>> = (props: IProps) => {
+  const { isAuthenticated } = props
+
   const logout = useAuthStore((s) => s.logout)
   const clientAuthenticated = useAuthStore((s) => s.isAuthenticated)
 
@@ -20,12 +29,15 @@ const HeaderComponent = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
     logout()
     router.replace('/login')
   }
+
+  // render
   return (
     <header className='bg-card sticky top-0 z-50 border-b'>
       <div className='mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6'>
         <Link href='/items'>
           <Image src='/poke-ball.png' alt='Logo' width={50} height={50} />
         </Link>
+
         <div className='flex items-center gap-1.5'>
           <LanguageSwitcherComponent
             trigger={

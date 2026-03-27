@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
+// hook
 export const useIntersection = (callback: () => void) => {
   const ref = useRef<HTMLDivElement>(null)
   const callbackRef = useRef(callback)
@@ -21,6 +22,7 @@ export const useIntersection = (callback: () => void) => {
     })
 
     observer.observe(element)
+
     return () => observer.disconnect()
   }, [])
 

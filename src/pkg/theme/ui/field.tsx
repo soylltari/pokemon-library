@@ -1,7 +1,8 @@
 'use client'
 
 import { cva, type VariantProps } from 'class-variance-authority'
-import { ReactNode, useMemo } from 'react'
+import type { ReactNode } from 'react'
+import { useMemo } from 'react'
 
 import { cn } from '@/pkg/theme/lib/utils'
 import { Label } from '@/pkg/theme/ui/label'
