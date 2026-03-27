@@ -20,7 +20,7 @@ const getPokemonId = (url: string): number => {
 const PokemonListComponent: FC<Readonly<IProps>> = () => {
   const t = useTranslations('library')
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = usePokemonListQuery()
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } = usePokemonListQuery()
 
   const handleIntersect = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -29,22 +29,6 @@ const PokemonListComponent: FC<Readonly<IProps>> = () => {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage])
 
   const sentinelRef = useIntersection(handleIntersect)
-
-  if (isLoading) {
-    return (
-      <div className='my-20 flex justify-center'>
-        <p className='text-muted-foreground'>{t('loading')}</p>
-      </div>
-    )
-  }
-
-  if (isError) {
-    return (
-      <div className='my-20 flex justify-center'>
-        <p className='text-destructive'>{t('error.fetchFailed')}</p>
-      </div>
-    )
-  }
 
   const pokemon = data?.pages.flatMap((page) => page.results) ?? []
 
