@@ -1,10 +1,17 @@
 import { useTranslations } from 'next-intl'
+import { FC } from 'react'
 
 import { IPokemonStat } from '@/app/entities/models/pokemon.model'
 import { CardContent } from '@/pkg/theme/ui/card'
 import { Card } from '@/pkg/theme/ui/card'
 
-export const StatBlock = ({ stat }: { stat: IPokemonStat }) => {
+interface IProps {
+  stat: IPokemonStat
+}
+
+const StatBlockComponent: FC<Readonly<IProps>> = (props: IProps) => {
+  const { stat } = props
+
   const t = useTranslations('detail.stats')
   const label = t(stat.stat.name)
 
@@ -18,3 +25,5 @@ export const StatBlock = ({ stat }: { stat: IPokemonStat }) => {
     </Card>
   )
 }
+
+export default StatBlockComponent

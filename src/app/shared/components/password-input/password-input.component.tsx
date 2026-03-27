@@ -8,14 +8,14 @@ import { Button } from '@/pkg/theme/ui/button'
 import { Field, FieldError, FieldLabel } from '@/pkg/theme/ui/field'
 import { Input } from '@/pkg/theme/ui/input'
 
-interface IPasswordInputProps<T extends FieldValues> {
+interface IProps<T extends FieldValues> {
   control: Control<T>
   name: Path<T>
   label: string
   placeholder: string
 }
 
-const PasswordInputComponent = <T extends FieldValues>(props: IPasswordInputProps<T>) => {
+const PasswordInputComponent = <T extends FieldValues>(props: Readonly<IProps<T>>) => {
   const [showPassword, setShowPassword] = useState(false)
 
   const { control, name, label, placeholder } = props

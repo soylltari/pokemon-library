@@ -3,16 +3,16 @@ import { Control, Controller, FieldPath, FieldValues } from 'react-hook-form'
 import { Field, FieldError, FieldLabel } from '@/pkg/theme/ui/field'
 import { Input } from '@/pkg/theme/ui/input'
 
-interface IControlledInputProps<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>
-  name: FieldPath<TFieldValues>
+interface IProps<T extends FieldValues> {
+  control: Control<T>
+  name: FieldPath<T>
   label: string
   placeholder: string
   type?: 'text' | 'email'
   id?: string
 }
 
-const ControlledInputComponent = <TFieldValues extends FieldValues>(props: IControlledInputProps<TFieldValues>) => {
+const ControlledInputComponent = <T extends FieldValues>(props: Readonly<IProps<T>>) => {
   const { control, name, label, placeholder, type = 'text', id } = props
 
   return (

@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import type { FC } from 'react'
 import { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -15,7 +16,9 @@ import { useRouter } from '@/pkg/locale'
 import { Button } from '@/pkg/theme/ui/button'
 import { FieldGroup } from '@/pkg/theme/ui/field'
 
-const LoginFormComponent = () => {
+interface IProps {}
+
+const LoginFormComponent: FC<Readonly<IProps>> = () => {
   const router = useRouter()
 
   const login = useAuthStore((s) => s.login)

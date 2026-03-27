@@ -1,3 +1,5 @@
+import type { NextPage } from 'next'
+
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 
 import { fetchPokemonList, POKEMON_QUERY_KEY } from '@/app/entities/api/pokemon/pokemon.api'
@@ -6,7 +8,9 @@ import { getQueryClient } from '@/pkg/rest-api'
 
 export const revalidate = 3600
 
-const Page = async () => {
+interface IProps {}
+
+const Page: NextPage<Readonly<IProps>> = async () => {
   const queryClient = getQueryClient()
 
   await queryClient.prefetchInfiniteQuery({

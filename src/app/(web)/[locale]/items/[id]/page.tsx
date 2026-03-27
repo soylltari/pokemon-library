@@ -1,10 +1,14 @@
-import type { Metadata } from 'next'
+import type { Metadata, NextPage } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
 import { fetchAllPokemonIds, fetchPokemonById } from '@/app/entities/api'
 import { PokemonDetailComponent } from '@/app/modules/pokemon-detail'
 import { routing } from '@/pkg/locale'
+
+interface IProps {
+  params: Promise<{ id: string; locale: string }>
+}
 
 export const revalidate = 3600
 
@@ -14,11 +18,7 @@ export const generateStaticParams = async () => {
   return routing.locales.flatMap((locale) => ids.map((id) => ({ locale, id: String(id) })))
 }
 
-type Props = {
-  params: Promise<{ id: string; locale: string }>
-}
-
-export const generateMetadata = async ({ params }: Props): Promise<Metadata> => {
+export const generateMetadata = async ({ params }: IProps): Promise<Metadata> => {
   const { id } = await params
 
   const t = await getTranslations('metadata')
@@ -40,7 +40,9 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   }
 }
 
-const Page = async ({ params }: Props) => {
+const Page: NextPage<Readonly<IProps>> = async (props: IProps) => {
+  const { params } = props
+
   const { id } = await params
 
   let pokemon

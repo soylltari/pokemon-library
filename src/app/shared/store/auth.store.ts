@@ -13,7 +13,7 @@ interface IAuthResult {
   error?: { field: 'email' | 'password'; message: string }
 }
 
-interface IAuthState {
+interface IStore {
   users: IUser[]
   user: IUser | null
   token: string | null
@@ -23,7 +23,7 @@ interface IAuthState {
   logout: () => void
 }
 
-export const useAuthStore = create<IAuthState>()(
+export const useAuthStore = create<IStore>()(
   persist(
     (set, get) => ({
       users: [],

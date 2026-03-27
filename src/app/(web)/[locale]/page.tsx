@@ -1,9 +1,12 @@
+import type { NextPage } from 'next'
 import { cookies } from 'next/headers'
 
 import { redirect } from '@/pkg/locale'
 import { routing } from '@/pkg/locale'
 
-const Page = async () => {
+interface IProps {}
+
+const Page: NextPage<Readonly<IProps>> = async () => {
   const cookieStore = await cookies()
   const token = cookieStore.get('auth-token')?.value
 

@@ -1,12 +1,15 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import type { FC } from 'react'
 import { useCallback } from 'react'
 
 import { usePokemonListQuery } from '@/app/entities/api'
 import { useIntersection } from '@/app/shared/hooks'
 
-import { PokemonCard } from './elements'
+import { PokemonCardComponent } from './elements'
+
+interface IProps {}
 
 const getPokemonId = (url: string): number => {
   const parts = url.split('/').filter(Boolean)
@@ -14,7 +17,7 @@ const getPokemonId = (url: string): number => {
   return Number(parts[parts.length - 1])
 }
 
-const PokemonListComponent = () => {
+const PokemonListComponent: FC<Readonly<IProps>> = () => {
   const t = useTranslations('library')
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading, isError } = usePokemonListQuery()
@@ -53,7 +56,7 @@ const PokemonListComponent = () => {
         {pokemon.map(({ name, url }) => {
           const id = getPokemonId(url)
 
-          return <PokemonCard key={name} id={id} name={name} />
+          return <PokemonCardComponent key={name} id={id} name={name} />
         })}
       </div>
 

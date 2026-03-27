@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import type { FC } from 'react'
 
-const NotFoundComponent = () => {
+interface IProps {}
+
+const NotFoundComponent: FC<Readonly<IProps>> = () => {
   const t = useTranslations('notFound')
 
   return (

@@ -1,7 +1,7 @@
 'use client'
 
 import { useLocale } from 'next-intl'
-import type { ReactNode } from 'react'
+import type { FC, ReactNode } from 'react'
 
 import { routing } from '@/pkg/locale'
 import { usePathname, useRouter } from '@/pkg/locale'
@@ -13,12 +13,18 @@ import {
   DropdownMenuTrigger,
 } from '@/pkg/theme/ui/dropdown-menu'
 
+interface IProps {
+  trigger: ReactNode
+}
+
 const LOCALE_LABELS: Record<string, string> = {
   en: 'English',
   de: 'Deutsch',
 }
 
-const LanguageSwitcherComponent = ({ trigger }: { trigger: ReactNode }) => {
+const LanguageSwitcherComponent: FC<Readonly<IProps>> = (props: IProps) => {
+  const { trigger } = props
+
   const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()

@@ -3,6 +3,7 @@
 import { ArrowLeftIcon } from 'lucide-react'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import type { FC } from 'react'
 
 import type { IPokemonDetails } from '@/app/entities/models/pokemon.model'
 import { Link } from '@/pkg/locale'
@@ -10,13 +11,15 @@ import { Badge } from '@/pkg/theme/ui/badge'
 import { Button } from '@/pkg/theme/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/pkg/theme/ui/card'
 
-import { StatBlock, TYPE_COLORS } from './elements'
+import { StatBlockComponent, TYPE_COLORS } from './elements'
 
-interface IPokemonDetailProps {
+interface IProps {
   pokemon: IPokemonDetails
 }
 
-const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
+const PokemonDetailComponent: FC<Readonly<IProps>> = (props: IProps) => {
+  const { pokemon } = props
+
   const t = useTranslations('detail')
 
   const artwork = pokemon.sprites.other['official-artwork'].front_default ?? pokemon.sprites.front_default
@@ -102,7 +105,7 @@ const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
                 <CardContent>
                   <div className='grid grid-cols-3 gap-3'>
                     {pokemon.stats.map((stat) => (
-                      <StatBlock key={stat.stat.name} stat={stat} />
+                      <StatBlockComponent key={stat.stat.name} stat={stat} />
                     ))}
                   </div>
                 </CardContent>

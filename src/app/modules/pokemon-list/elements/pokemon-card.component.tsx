@@ -1,12 +1,13 @@
 'use client'
 import Image from 'next/image'
+import type { FC } from 'react'
 import { useEffect, useRef } from 'react'
 
 import { envClient } from '@/config/env/env.client'
 import { Link } from '@/pkg/locale'
 import { Card, CardContent } from '@/pkg/theme/ui/card'
 
-interface IPokemonCardProps {
+interface IProps {
   id: number
   name: string
 }
@@ -17,7 +18,9 @@ interface ICardTransform {
   scale: number
 }
 
-const PokemonCard = ({ id, name }: IPokemonCardProps) => {
+const PokemonCardComponent: FC<Readonly<IProps>> = (props: IProps) => {
+  const { id, name } = props
+
   const spriteUrl = `${envClient.NEXT_PUBLIC_IMAGE_BASE_URL}/${id}.png`
   const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1)
 
@@ -128,4 +131,4 @@ const PokemonCard = ({ id, name }: IPokemonCardProps) => {
   )
 }
 
-export default PokemonCard
+export default PokemonCardComponent
