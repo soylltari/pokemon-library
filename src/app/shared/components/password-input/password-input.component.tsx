@@ -4,7 +4,9 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 
-import { Button, Field, FieldError, FieldLabel, Input } from '@/pkg/theme/ui'
+import { Button } from '@/pkg/theme/ui/button'
+import { Field, FieldError, FieldLabel } from '@/pkg/theme/ui/field'
+import { Input } from '@/pkg/theme/ui/input'
 
 interface IPasswordInputProps<T extends FieldValues> {
   control: Control<T>

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/pkg/theme/ui'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/pkg/theme/ui/card'
 
 interface IAuthCardProps {
   title: string

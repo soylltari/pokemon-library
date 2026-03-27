@@ -7,13 +7,13 @@ import { z } from 'zod'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
+import { AuthCardComponent } from '@/app/shared/components/auth-card'
+import { ControlledInputComponent } from '@/app/shared/components/controlled-input'
+import { PasswordInputComponent } from '@/app/shared/components/password-input'
 import { useAuthStore } from '@/app/shared/store'
 import { useRouter } from '@/pkg/locale'
-import { Button, FieldGroup } from '@/pkg/theme/ui'
-
-import AuthCardComponent from './auth-card.component'
-import ControlledInputComponent from './controlled-input.component'
-import PasswordInputComponent from './password-input.component'
+import { Button } from '@/pkg/theme/ui/button'
+import { FieldGroup } from '@/pkg/theme/ui/field'
 
 const RegisterFormComponent = () => {
   const router = useRouter()

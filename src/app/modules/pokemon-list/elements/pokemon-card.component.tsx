@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react'
 
 import { envClient } from '@/config/env/env.client'
 import { Link } from '@/pkg/locale'
-import { Card, CardContent } from '@/pkg/theme/ui'
+import { Card, CardContent } from '@/pkg/theme/ui/card'
 
 interface IPokemonCardProps {
   id: number

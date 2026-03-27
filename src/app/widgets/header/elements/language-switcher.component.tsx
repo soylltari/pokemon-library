@@ -11,7 +11,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from '@/pkg/theme/ui'
+} from '@/pkg/theme/ui/dropdown-menu'
 
 const LOCALE_LABELS: Record<string, string> = {
   en: 'English',

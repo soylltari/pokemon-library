@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 import { useAuthStore } from '@/app/shared/store'
 import { Link, useRouter } from '@/pkg/locale'
-import { Button } from '@/pkg/theme/ui'
+import { Button } from '@/pkg/theme/ui/button'
 
 import { LanguageSwitcherComponent } from './elements'
 
