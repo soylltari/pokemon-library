@@ -4,22 +4,11 @@ import type { FC } from 'react'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/pkg/theme/ui/tabs'
 
+import { AUTH_TABS } from './auth.constants'
 import { LoginFormComponent, RegisterFormComponent } from './elements'
 
 // interface
 interface IProps {}
-
-// constants
-const TABS = [
-  {
-    value: 'login',
-    label: 'Sign In',
-  },
-  {
-    value: 'register',
-    label: 'Register',
-  },
-]
 
 // component
 const AuthComponent: FC<Readonly<IProps>> = () => {
@@ -28,7 +17,7 @@ const AuthComponent: FC<Readonly<IProps>> = () => {
     <div className='mx-auto w-full max-w-sm'>
       <Tabs defaultValue='login' className='w-full'>
         <TabsList className='bg-background mb-4 grid w-full grid-cols-2 gap-1 border p-1'>
-          {TABS.map((tab) => (
+          {AUTH_TABS.map((tab) => (
             <TabsTrigger
               key={tab.value}
               value={tab.value}

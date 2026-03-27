@@ -13,15 +13,11 @@ import {
   DropdownMenuTrigger,
 } from '@/pkg/theme/ui/dropdown-menu'
 
+import { LOCALE_LABELS } from './language-switcher.constants'
+
 // interface
 interface IProps {
   trigger: ReactNode
-}
-
-// constants
-const LOCALE_LABELS: Record<string, string> = {
-  en: 'English',
-  de: 'Deutsch',
 }
 
 // component
