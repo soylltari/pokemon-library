@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 import HeaderComponent from '@/app/widgets/header/header.component'
 import { inter, montserrat } from '@/config/fonts'

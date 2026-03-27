@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { AuthComponent } from '@/app/modules/auth'
 
 const Page = () => {
