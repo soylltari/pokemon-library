@@ -17,6 +17,7 @@ const PasswordInputComponent = <T extends FieldValues>(props: IPasswordInputProp
   const [showPassword, setShowPassword] = useState(false)
 
   const { control, name, label, placeholder } = props
+
   return (
     <Controller
       name={name}

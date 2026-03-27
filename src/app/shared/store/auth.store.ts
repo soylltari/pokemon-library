@@ -54,8 +54,11 @@ export const useAuthStore = create<IAuthState>()(
         }
 
         const token = crypto.randomUUID()
+
         set({ user: existing, token, isAuthenticated: true })
+
         document.cookie = `auth-token=${token}; path=/; SameSite=Lax`
+
         return { success: true }
       },
 
@@ -80,24 +83,30 @@ export const useAuthStore = create<IAuthState>()(
           email,
           password,
         }
+
         const token = crypto.randomUUID()
+
         set((state) => ({
           users: [...state.users, newUser],
           user: newUser,
           token,
           isAuthenticated: true,
         }))
+
         document.cookie = `auth-token=${token}; path=/; SameSite=Lax`
+
         return { success: true }
       },
 
       logout: () => {
         set({ user: null, token: null, isAuthenticated: false })
+
         document.cookie = 'auth-token=; path=/; max-age=0'
       },
     }),
     {
       name: 'auth-storage',
+
       onRehydrateStorage: () => (state) => {
         if (state?.token) {
           document.cookie = `auth-token=${state.token}; path=/; SameSite=Lax`

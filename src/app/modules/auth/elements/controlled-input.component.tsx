@@ -21,7 +21,9 @@ const ControlledInputComponent = <TFieldValues extends FieldValues>(props: ICont
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
           <FieldLabel htmlFor={id ?? name}>{label}</FieldLabel>
+
           <Input {...field} id={id ?? name} type={type} placeholder={placeholder} aria-invalid={fieldState.invalid} />
+
           {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
         </Field>
       )}

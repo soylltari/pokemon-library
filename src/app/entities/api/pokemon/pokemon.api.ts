@@ -43,6 +43,7 @@ export const fetchAllPokemonIds = async (): Promise<number[]> => {
 
   return data.results.map((p) => {
     const parts = p.url.split('/')
+
     return Number(parts[parts.length - 2])
   })
 }

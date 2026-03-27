@@ -6,7 +6,7 @@ import { getQueryClient } from '@/pkg/rest-api'
 
 export const revalidate = 3600
 
-const PokemonItemsPage = async () => {
+const Page = async () => {
   const queryClient = getQueryClient()
 
   await queryClient.prefetchInfiniteQuery({
@@ -21,4 +21,4 @@ const PokemonItemsPage = async () => {
     </HydrationBoundary>
   )
 }
-export default PokemonItemsPage
+export default Page

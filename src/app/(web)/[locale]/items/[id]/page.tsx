@@ -40,7 +40,7 @@ export const generateMetadata = async ({ params }: Props): Promise<Metadata> => 
   }
 }
 
-const PokemonDetailPage = async ({ params }: Props) => {
+const Page = async ({ params }: Props) => {
   const { id } = await params
 
   let pokemon
@@ -53,4 +53,4 @@ const PokemonDetailPage = async ({ params }: Props) => {
   return <PokemonDetailComponent pokemon={pokemon} />
 }
 
-export default PokemonDetailPage
+export default Page

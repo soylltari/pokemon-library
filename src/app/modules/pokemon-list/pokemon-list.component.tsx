@@ -10,6 +10,7 @@ import { PokemonCard } from './elements'
 
 const getPokemonId = (url: string): number => {
   const parts = url.split('/').filter(Boolean)
+
   return Number(parts[parts.length - 1])
 }
 
@@ -51,12 +52,14 @@ const PokemonListComponent = () => {
       <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {pokemon.map(({ name, url }) => {
           const id = getPokemonId(url)
+
           return <PokemonCard key={name} id={id} name={name} />
         })}
       </div>
 
       <div ref={sentinelRef} className='mt-8 flex justify-center py-6'>
         {isFetchingNextPage && <p className='text-muted-foreground text-sm'>{t('loading')}</p>}
+
         {!hasNextPage && pokemon.length > 0 && (
           <p className='text-muted-foreground text-sm'>{t('listEnd', { pokemon: pokemon.length })}</p>
         )}

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { AuthComponent } from '@/app/modules/auth'
 
-const LoginPage = () => {
+const Page = () => {
   return (
     <div className='flex min-h-[calc(100vh-67px)] items-center justify-center'>
       <AuthComponent />
@@ -10,4 +10,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default Page

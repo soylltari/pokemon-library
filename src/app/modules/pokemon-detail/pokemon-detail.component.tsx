@@ -27,6 +27,7 @@ const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
         <Link href='/items'>
           <Button variant='ghost' size='sm' className='text-muted-foreground gap-1.5 px-2'>
             <ArrowLeftIcon className='h-4 w-4' />
+
             <span>{t('back')}</span>
           </Button>
         </Link>
@@ -50,6 +51,7 @@ const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
         <div className='flex min-w-0 flex-1 flex-col gap-6'>
           <div>
             <p className='text-muted-foreground mb-1 font-medium'>#{String(pokemon.id).padStart(3, '0')}</p>
+
             <h1>{pokemon.name}</h1>
 
             {pokemon.types && (
@@ -74,12 +76,14 @@ const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
                 <p className='text-muted-foreground mt-0.5 text-sm'>{t('height')}</p>
               </CardContent>
             </Card>
+
             <Card size='sm'>
               <CardContent className='pt-3'>
                 <p className='text-2xl font-bold'>{pokemon.weight / 10}kg</p>
                 <p className='text-muted-foreground mt-0.5 text-sm'>{t('weight')}</p>
               </CardContent>
             </Card>
+
             <Card size='sm'>
               <CardContent className='pt-3'>
                 <p className='text-2xl font-bold'>{pokemon.base_experience}</p>
@@ -94,6 +98,7 @@ const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
                 <CardHeader>
                   <CardTitle className='text-sm font-medium tracking-wider uppercase'>{t('baseStats')}</CardTitle>
                 </CardHeader>
+
                 <CardContent>
                   <div className='grid grid-cols-3 gap-3'>
                     {pokemon.stats.map((stat) => (
@@ -110,6 +115,7 @@ const PokemonDetailComponent = ({ pokemon }: IPokemonDetailProps) => {
               <CardHeader>
                 <CardTitle className='text-sm font-medium tracking-wider uppercase'>{t('abilities')}</CardTitle>
               </CardHeader>
+
               <CardContent>
                 <div className='flex flex-wrap gap-2'>
                   {pokemon.abilities.map(({ ability, is_hidden }) => (

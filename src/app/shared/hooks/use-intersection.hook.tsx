@@ -21,6 +21,7 @@ export const useIntersection = (callback: () => void) => {
     })
 
     observer.observe(element)
+
     return () => observer.disconnect()
   }, [])
 

@@ -117,6 +117,7 @@ const PokemonCard = ({ id, name }: IPokemonCardProps) => {
     <Link href={`/items/${id}`}>
       <Card ref={cardRef} className='relative h-80 cursor-pointer overflow-hidden rounded-2xl'>
         <Image ref={imageRef} src={spriteUrl} alt={name} fill className='z-10 object-contain p-4' />
+
         <CardContent className='relative z-0 flex h-full items-start p-4'>
           <p className='bg-accent w-full rounded-2xl p-1 text-center text-lg font-semibold tracking-wide drop-shadow-md'>
             {capitalizedName}
