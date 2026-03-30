@@ -5,7 +5,7 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const withNextIntl = createNextIntlPlugin({
   requestConfig: './src/pkg/locale/request.ts',
   experimental: {
-    createMessagesDeclaration: ['./translations/en.json', './translations/de.json'],
+    createMessagesDeclaration: ['./translations/en.json'],
   },
 })
 
@@ -21,9 +21,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: '**' },
-    ],
+    remotePatterns: [{ protocol: 'https', hostname: '**' }],
     minimumCacheTTL: 86400,
     deviceSizes: [640, 1080, 1920],
     imageSizes: [16, 64, 128],
