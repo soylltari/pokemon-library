@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation'
+
 import { restApiFetcher } from '@/pkg/rest-api'
 
 import type { IPokemonDetails, IPokemonListResponse } from '../../models/pokemon.model'
@@ -23,7 +25,7 @@ export const fetchPokemonById = async (id: string | number): Promise<IPokemonDet
   const response = await restApiFetcher.get(`pokemon/${id}`)
 
   if (!response.ok) {
-    throw new Error(`Pokemon ${id} not found`)
+    notFound()
   }
 
   return response.json()

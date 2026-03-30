@@ -16,7 +16,7 @@ const NotFoundComponent: FC<Readonly<IProps>> = () => {
 
       <h1>{t('title')}</h1>
 
-      <p className='text-gray-500'>{t('description')}</p>
+      <p className='mt-2 text-gray-500'>{t('description')}</p>
     </div>
   )
 }

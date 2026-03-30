@@ -1,5 +1,4 @@
 import type { Metadata, NextPage } from 'next'
-import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
@@ -30,20 +29,13 @@ export const generateMetadata = async ({ params }: IProps): Promise<Metadata> =>
 
   const t = await getTranslations('metadata')
 
-  try {
-    const pokemon = await fetchPokemonById(id)
+  const pokemon = await fetchPokemonById(id)
 
-    const capitalizedName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+  const capitalizedName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
 
-    return {
-      title: `${capitalizedName} - ${t('appName')}`,
-      description: `${t('descriptionPrefix')} #${String(pokemon.id).padStart(3, '0')} - ${capitalizedName}`,
-    }
-  } catch {
-    return {
-      title: t('notFound.title'),
-      description: t('notFound.description'),
-    }
+  return {
+    title: `${capitalizedName} - ${t('appName')}`,
+    description: `${t('descriptionPrefix')} #${String(pokemon.id).padStart(3, '0')} - ${capitalizedName}`,
   }
 }
 
@@ -55,11 +47,7 @@ const Page: NextPage<Readonly<IProps>> = async (props: IProps) => {
 
   const queryClient = getQueryClient()
 
-  try {
-    await queryClient.fetchQuery(pokemonDetailOptions(id))
-  } catch {
-    notFound()
-  }
+  await queryClient.fetchQuery(pokemonDetailOptions(id))
 
   // render
   return (
