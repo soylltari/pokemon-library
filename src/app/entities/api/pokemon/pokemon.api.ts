@@ -1,14 +1,9 @@
-import { cache } from 'react'
-
 import { restApiFetcher } from '@/pkg/rest-api'
 
 import type { IPokemonDetails, IPokemonListResponse } from '../../models/pokemon.model'
 
 // constants
 const LIMIT = 20
-
-// query key
-export const POKEMON_QUERY_KEY = ['pokemon'] as const
 
 // fetchPokemonList
 export const fetchPokemonList = async (offset: number): Promise<IPokemonListResponse> => {
@@ -24,7 +19,7 @@ export const fetchPokemonList = async (offset: number): Promise<IPokemonListResp
 }
 
 // fetchPokemonById
-export const fetchPokemonById = cache(async (id: string | number): Promise<IPokemonDetails> => {
+export const fetchPokemonById = async (id: string | number): Promise<IPokemonDetails> => {
   const response = await restApiFetcher.get(`pokemon/${id}`)
 
   if (!response.ok) {
@@ -32,7 +27,7 @@ export const fetchPokemonById = cache(async (id: string | number): Promise<IPoke
   }
 
   return response.json()
-})
+}
 
 // fetchAllPokemonIds
 export const fetchAllPokemonIds = async (): Promise<number[]> => {

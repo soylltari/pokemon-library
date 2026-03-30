@@ -1,19 +1,35 @@
 'use client'
 
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { infiniteQueryOptions, useInfiniteQuery } from '@tanstack/react-query'
 
-import { fetchPokemonList, POKEMON_QUERY_KEY } from './pokemon.api'
+import { fetchPokemonList } from './pokemon.api'
 
-export const usePokemonListQuery = () =>
-  useInfiniteQuery({
-    queryKey: POKEMON_QUERY_KEY,
-    queryFn: ({ pageParam }) => fetchPokemonList(pageParam),
-    getNextPageParam: (lastPage) => {
-      if (!lastPage.next) return undefined
+import { IPokemonListResponse } from '../../models/pokemon.model'
 
-      const url = new URL(lastPage.next)
+// query keys
+export const pokemonKeys = {
+  all: ['pokemon'] as const,
+  list: () => [...pokemonKeys.all, 'list'] as const,
+  detail: (id: string | number) => [...pokemonKeys.all, 'detail', id] as const,
+}
 
-      return Number(url.searchParams.get('offset'))
-    },
+// query options
+const getListNextPageParam = (lastPage: IPokemonListResponse): number | undefined => {
+  if (!lastPage.next) return undefined
+
+  const url = new URL(lastPage.next)
+
+  return Number(url.searchParams.get('offset'))
+}
+
+export const pokemonListOptions = () => {
+  return infiniteQueryOptions({
+    queryKey: pokemonKeys.list(),
+    queryFn: ({ pageParam }) => fetchPokemonList(pageParam as number),
     initialPageParam: 0,
+    getNextPageParam: (lastPage) => getListNextPageParam(lastPage),
   })
+}
+
+// use query
+export const usePokemonListQuery = () => useInfiniteQuery(pokemonListOptions())
