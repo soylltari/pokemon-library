@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 
-import { fetchPokemonList, POKEMON_QUERY_KEY } from '@/app/entities/api/pokemon/pokemon.api'
+import { pokemonListOptions } from '@/app/entities/api/pokemon'
 import { PokemonListComponent } from '@/app/modules/pokemon-list'
 import { getQueryClient } from '@/pkg/rest-api'
 
@@ -16,11 +16,7 @@ export const revalidate = 3600
 const Page: NextPage<Readonly<IProps>> = async () => {
   const queryClient = getQueryClient()
 
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: POKEMON_QUERY_KEY,
-    queryFn: ({ pageParam }) => fetchPokemonList(pageParam as number),
-    initialPageParam: 0,
-  })
+  await queryClient.prefetchInfiniteQuery(pokemonListOptions())
 
   // render
   return (

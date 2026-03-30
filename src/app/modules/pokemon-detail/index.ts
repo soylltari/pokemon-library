@@ -1,1 +1,1 @@
-export { default as PokemonDetailComponent } from './pokemon-detail.component'
+export { default as PokemonDetailComponent } from './elements/render-details.component'
