@@ -2,9 +2,12 @@ import type { Metadata, NextPage } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 
-import { fetchAllPokemonIds, fetchPokemonById } from '@/app/entities/api'
-import { PokemonDetailComponent } from '@/app/modules/pokemon-detail'
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
+
+import { fetchAllPokemonIds, fetchPokemonById, pokemonDetailOptions } from '@/app/entities/api'
+import PokemonDetailComponent from '@/app/modules/pokemon-detail/pokemon-detail.component'
 import { routing } from '@/pkg/locale'
+import { getQueryClient } from '@/pkg/rest-api'
 
 // interface
 interface IProps {
@@ -50,15 +53,20 @@ const Page: NextPage<Readonly<IProps>> = async (props: IProps) => {
 
   const { id } = await params
 
-  let pokemon
+  const queryClient = getQueryClient()
+
   try {
-    pokemon = await fetchPokemonById(id)
+    await queryClient.fetchQuery(pokemonDetailOptions(id))
   } catch {
     notFound()
   }
 
   // render
-  return <PokemonDetailComponent pokemon={pokemon} />
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <PokemonDetailComponent id={id} />
+    </HydrationBoundary>
+  )
 }
 
 export default Page
