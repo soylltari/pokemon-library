@@ -1,15 +1,21 @@
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server'
-import type { ReactNode } from 'react'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
+import type { FC, ReactNode } from 'react'
 
 import HeaderComponent from '@/app/widgets/header/header.component'
-import { inter, montserrat } from '@/config/fonts'
+import { primaryFont, secondaryFont } from '@/config/fonts'
 import { routing } from '@/pkg/locale'
 import { RestApiProvider } from '@/pkg/rest-api'
 
 import '@/config/styles/globals.css'
+
+// interface
+interface IProps {
+  children: ReactNode
+  params: Promise<{ locale: string }>
+}
 
 // metadata
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -25,38 +31,33 @@ export const generateMetadata = async (): Promise<Metadata> => {
 }
 
 // generateStaticParams
-export function generateStaticParams() {
+export const generateStaticParams = async () => {
   return routing.locales.map((locale) => ({ locale }))
 }
 
 // component
-export default async function LocaleLayout({
-  children,
-  params,
-}: {
-  children: ReactNode
-  params: Promise<{ locale: string }>
-}) {
-  const { locale } = await params
-  setRequestLocale(locale)
+const LocaleLayout: FC<Readonly<IProps>> = async (props: IProps) => {
+  const { children, params } = props
 
-  const messages = await getMessages()
+  const { locale } = await params
+
+  setRequestLocale(locale)
 
   const cookieStore = await cookies()
   const isAuthenticated = cookieStore.has('auth-token')
 
   // render
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <RestApiProvider>
-        <html lang={locale} className={`${inter.variable} ${montserrat.variable}`}>
-          <body suppressHydrationWarning className='antialiased'>
-            <HeaderComponent isAuthenticated={isAuthenticated} />
+    <html lang={locale} suppressHydrationWarning>
+      <body className={`${primaryFont.variable} ${secondaryFont.variable}`} suppressHydrationWarning>
+        <NextIntlClientProvider>
+          <HeaderComponent isAuthenticated={isAuthenticated} />
 
-            {children}
-          </body>
-        </html>
-      </RestApiProvider>
-    </NextIntlClientProvider>
+          <RestApiProvider>{children}</RestApiProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   )
 }
+
+export default LocaleLayout
