@@ -11,7 +11,7 @@ const NotFoundComponent: FC<Readonly<IProps>> = () => {
 
   // render
   return (
-    <div className='flex min-h-[calc(100vh-100px)] flex-col items-center justify-center'>
+    <div className='page-center min-h-[calc(100vh-100px)] flex-col'>
       <Image src='/error-pokemon.png' alt='Not Found' width={200} height={200} />
 
       <h1>{t('title')}</h1>

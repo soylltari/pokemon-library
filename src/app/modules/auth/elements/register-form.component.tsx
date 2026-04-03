@@ -70,7 +70,7 @@ const RegisterFormComponent: FC<Readonly<IProps>> = () => {
   // render
   return (
     <AuthCardComponent title={t('title')} description={t('description')}>
-      <form onSubmit={handleSubmit(handleOnSubmit)} className='flex flex-col gap-4'>
+      <form onSubmit={handleSubmit(handleOnSubmit)} className='form-stack'>
         <FieldGroup>
           <ControlledInputComponent
             control={control}
@@ -101,7 +101,7 @@ const RegisterFormComponent: FC<Readonly<IProps>> = () => {
           />
         </FieldGroup>
 
-        <Button type='submit' size='lg' className='mt-1 w-full' disabled={isSubmitting}>
+        <Button type='submit' size='lg' className='form-submit' disabled={isSubmitting}>
           {isSubmitting ? t('submittingButton') : t('submitButton')}
         </Button>
       </form>

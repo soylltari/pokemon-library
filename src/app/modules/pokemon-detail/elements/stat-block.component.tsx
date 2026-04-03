@@ -23,7 +23,7 @@ const StatBlockComponent: FC<Readonly<IProps>> = (props: IProps) => {
       <CardContent className='pt-3'>
         <p className='text-2xl font-bold'>{stat.base_stat}</p>
 
-        <p className='text-muted-foreground mt-0.5'>{label}</p>
+        <p className='text-meta-sm mt-0.5'>{label}</p>
       </CardContent>
     </Card>
   )

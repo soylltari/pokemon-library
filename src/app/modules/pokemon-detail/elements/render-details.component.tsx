@@ -29,7 +29,7 @@ const RenderDetailsComponent: FC<Readonly<IProps>> = (props: IProps) => {
 
   // render
   return (
-    <div className='mx-auto max-w-7xl px-4 py-4 md:px-10 md:py-6'>
+    <div className='layout-container py-4 md:px-10 md:py-6'>
       <div className='mb-4'>
         <Link href='/items'>
           <Button variant='ghost' size='sm' className='text-muted-foreground gap-1.5 px-2'>
@@ -57,7 +57,7 @@ const RenderDetailsComponent: FC<Readonly<IProps>> = (props: IProps) => {
 
         <div className='flex min-w-0 flex-1 flex-col gap-6'>
           <div>
-            <p className='text-muted-foreground mb-1 font-medium'>#{String(pokemon.id).padStart(3, '0')}</p>
+            <p className='text-meta-label'>#{String(pokemon.id).padStart(3, '0')}</p>
 
             <h1>{pokemon.name}</h1>
 
@@ -80,21 +80,21 @@ const RenderDetailsComponent: FC<Readonly<IProps>> = (props: IProps) => {
             <Card size='sm'>
               <CardContent className='pt-3'>
                 <p className='text-2xl font-bold'>{pokemon.height / 10}m</p>
-                <p className='text-muted-foreground mt-0.5 text-sm'>{t('height')}</p>
+                <p className='text-meta-sm mt-0.5'>{t('height')}</p>
               </CardContent>
             </Card>
 
             <Card size='sm'>
               <CardContent className='pt-3'>
                 <p className='text-2xl font-bold'>{pokemon.weight / 10}kg</p>
-                <p className='text-muted-foreground mt-0.5 text-sm'>{t('weight')}</p>
+                <p className='text-meta-sm mt-0.5'>{t('weight')}</p>
               </CardContent>
             </Card>
 
             <Card size='sm'>
               <CardContent className='pt-3'>
                 <p className='text-2xl font-bold'>{pokemon.base_experience}</p>
-                <p className='text-muted-foreground mt-0.5 text-sm'>{t('baseExperience')}</p>
+                <p className='text-meta-sm mt-0.5'>{t('baseExperience')}</p>
               </CardContent>
             </Card>
           </div>
@@ -103,7 +103,7 @@ const RenderDetailsComponent: FC<Readonly<IProps>> = (props: IProps) => {
             <div>
               <Card>
                 <CardHeader>
-                  <CardTitle className='text-sm font-medium tracking-wider uppercase'>{t('baseStats')}</CardTitle>
+                  <CardTitle className='section-kicker'>{t('baseStats')}</CardTitle>
                 </CardHeader>
 
                 <CardContent>
@@ -120,7 +120,7 @@ const RenderDetailsComponent: FC<Readonly<IProps>> = (props: IProps) => {
           {pokemon.abilities && (
             <Card size='sm'>
               <CardHeader>
-                <CardTitle className='text-sm font-medium tracking-wider uppercase'>{t('abilities')}</CardTitle>
+                <CardTitle className='section-kicker'>{t('abilities')}</CardTitle>
               </CardHeader>
 
               <CardContent>

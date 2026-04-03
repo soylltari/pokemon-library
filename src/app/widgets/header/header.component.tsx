@@ -33,7 +33,7 @@ const HeaderComponent: FC<Readonly<IProps>> = (props: IProps) => {
   // render
   return (
     <header className='bg-card sticky top-0 z-50 border-b'>
-      <div className='mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6'>
+      <div className='layout-container flex items-center justify-between gap-6 py-2 sm:px-6'>
         <Link href='/items'>
           <Image src='/poke-ball.png' alt='Logo' width={50} height={50} />
         </Link>

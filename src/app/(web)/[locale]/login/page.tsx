@@ -10,7 +10,7 @@ interface IProps {}
 const Page: NextPage<Readonly<IProps>> = async () => {
   // render
   return (
-    <div className='flex min-h-[calc(100vh-67px)] items-center justify-center'>
+    <div className='page-center min-h-[calc(100vh-67px)]'>
       <AuthComponent />
     </div>
   )
