@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { cookies } from 'next/headers'
 import { NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import type { FC, ReactNode } from 'react'
