@@ -1,5 +1,5 @@
 import type { Metadata, NextPage } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
 
@@ -43,7 +43,9 @@ export const generateMetadata = async ({ params }: IProps): Promise<Metadata> =>
 const Page: NextPage<Readonly<IProps>> = async (props: IProps) => {
   const { params } = props
 
-  const { id } = await params
+  const { id, locale } = await params
+
+  setRequestLocale(locale)
 
   const queryClient = getQueryClient()
 
