@@ -43,15 +43,12 @@ const LocaleLayout: FC<Readonly<IProps>> = async (props: IProps) => {
 
   setRequestLocale(locale)
 
-  const cookieStore = await cookies()
-  const isAuthenticated = cookieStore.has('auth-token')
-
   // render
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${primaryFont.variable} ${secondaryFont.variable}`} suppressHydrationWarning>
         <NextIntlClientProvider>
-          <HeaderComponent isAuthenticated={isAuthenticated} />
+          <HeaderComponent />
 
           <RestApiProvider>{children}</RestApiProvider>
         </NextIntlClientProvider>

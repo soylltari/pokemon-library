@@ -1,7 +1,7 @@
 'use client'
 import { LanguagesIcon, LogOutIcon } from 'lucide-react'
 import Image from 'next/image'
-import type { FC } from 'react'
+import { type FC, useSyncExternalStore } from 'react'
 
 import { useAuthStore } from '@/app/shared/store'
 import { Link, useRouter } from '@/pkg/locale'
@@ -10,18 +10,20 @@ import { Button } from '@/pkg/theme/ui/button'
 import { LanguageSwitcherComponent } from './elements'
 
 // interface
-interface IProps {
-  isAuthenticated: boolean
-}
+interface IProps {}
 
 // component
-const HeaderComponent: FC<Readonly<IProps>> = (props: IProps) => {
-  const { isAuthenticated } = props
-
+const HeaderComponent: FC<Readonly<IProps>> = () => {
   const logout = useAuthStore((s) => s.logout)
-  const clientAuthenticated = useAuthStore((s) => s.isAuthenticated)
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
 
-  const isAuth = isAuthenticated || clientAuthenticated
+  const isHydrated = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  )
+
+  const isAuth = isHydrated && isAuthenticated
 
   const router = useRouter()
 
